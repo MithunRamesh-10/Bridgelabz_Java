@@ -1,4 +1,4 @@
-package javaProgrammingElement;
+package javaProgrammingElement.Level1;
 
 public class PensDistribution {
     public static void main(String[] args) {
