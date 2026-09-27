@@ -1,13 +1,23 @@
-package javaMethods.Level1;
+package javaMethods.level1;
 
 import java.util.Scanner;
 
-public class SumOfNaturalNumbers {
+/**
+ * Problem 7 (GCR — Java Methods Level 1 Assignment)
+ * Find the sum of the first n natural numbers using a loop.
+ * The calculation is performed using a separate method.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class SumNaturalNumbers {
 
-    public static int calculateSum(int n) {
+    // Method to calculate sum of natural numbers
+    public static int calculateSum(int number) {
         int sum = 0;
 
-        for (int i = 1; i <= n; i++) {
+        // Add numbers from 1 to number
+        for (int i = 1; i <= number; i++) {
             sum += i;
         }
 
@@ -15,15 +25,19 @@ public class SumOfNaturalNumbers {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter n: ");
-        int n = sc.nextInt();
+        // Take number input
+        System.out.print("Enter a number: ");
+        int number = input.nextInt();
 
-        int sum = calculateSum(n);
+        // Call method to calculate sum
+        int sum = calculateSum(number);
 
-        System.out.println("Sum of first " + n + " natural numbers: " + sum);
+        // Display result
+        System.out.println("Sum of first " + number +
+                " natural numbers: " + sum);
 
-        sc.close();
+        input.close();
     }
 }
