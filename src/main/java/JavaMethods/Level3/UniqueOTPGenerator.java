@@ -1,54 +1,31 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
-import java.util.HashSet;
-import java.util.Random;
 import java.util.Scanner;
 
-public class UniqueOTPGenerator {
+/**
+ * Problem 7 (GCR — Java Methods Level 3 Assignment)
+ * Generate a six-digit OTP 10 times and check whether
+ * all generated OTP numbers are unique.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class UniqueOTP {
 
+    // Method to generate a six-digit OTP
     public static int generateOTP() {
-
-        Random random = new Random();
-
-        return 100000 + random.nextInt(900000);
+        return (int) (Math.random() * 900000) + 100000;
     }
 
-    public static int[] generateUniqueOTPs(int size) {
+    // Method to check whether all OTPs are unique
+    public static boolean areUnique(int[] otps) {
 
-        int[] otps = new int[size];
-
-        HashSet<Integer> uniqueOTPs = new HashSet<>();
-
-        int index = 0;
-
-        while (index < size) {
-
-            int otp = generateOTP();
-
-            if (!uniqueOTPs.contains(otp)) {
-
-                uniqueOTPs.add(otp);
-
-                otps[index] = otp;
-
-                index++;
+        for (int i = 0; i < otps.length; i++) {
+            for (int j = i + 1; j < otps.length; j++) {
+                if (otps[i] == otps[j]) {
+                    return false;
+                }
             }
-        }
-
-        return otps;
-    }
-
-    public static boolean areOTPsUnique(int[] otps) {
-
-        HashSet<Integer> set = new HashSet<>();
-
-        for (int otp : otps) {
-
-            if (set.contains(otp)) {
-                return false;
-            }
-
-            set.add(otp);
         }
 
         return true;
@@ -56,17 +33,24 @@ public class UniqueOTPGenerator {
 
     public static void main(String[] args) {
 
-        int[] otps = generateUniqueOTPs(10);
+        // Create array for 10 OTPs
+        int[] otps = new int[10];
 
+        // Generate 10 OTPs
+        for (int i = 0; i < otps.length; i++) {
+            otps[i] = generateOTP();
+        }
+
+        // Display OTPs
         System.out.println("Generated OTPs:");
 
         for (int otp : otps) {
             System.out.println(otp);
         }
 
-        System.out.println(
-                "\nAll OTPs are unique: " +
-                        areOTPsUnique(otps)
-        );
+        // Check uniqueness
+        boolean unique = areUnique(otps);
+
+        System.out.println("All OTPs are unique: " + unique);
     }
 }
