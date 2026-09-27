@@ -1,66 +1,73 @@
-package javaMethods.Level1;
+package javaMethods.level2;
 
-import java.util.Scanner;
+/**
+ * Problem 12 (GCR — Java Methods Level 2 Assignment)
+ * Generate five 4-digit random numbers and find their
+ * average, minimum, and maximum values.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class RandomNumberStatistics {
 
-public class RandomNumberAnalysis {
-
-    public static int[] generate4DigitRandomArray(int size) {
-
+    // Method to generate an array of 4-digit random numbers
+    public int[] generate4DigitRandomArray(int size) {
         int[] numbers = new int[size];
 
         for (int i = 0; i < size; i++) {
-
+            // Generate a 4-digit number from 1000 to 9999
             numbers[i] = (int) (Math.random() * 9000) + 1000;
         }
 
         return numbers;
     }
 
-    public static double[] findAverageMinMax(int[] numbers) {
+    // Method to find average, minimum and maximum
+    public double[] findAverageMinMax(int[] numbers) {
 
         int sum = 0;
-
         int minimum = numbers[0];
         int maximum = numbers[0];
 
         for (int number : numbers) {
-
+            // Calculate sum
             sum += number;
 
-            minimum = Math.min(minimum, number);
-            maximum = Math.max(maximum, number);
+            // Find minimum
+            minimum = (int) Math.min(minimum, number);
+
+            // Find maximum
+            maximum = (int) Math.max(maximum, number);
         }
 
+        // Calculate average
         double average = (double) sum / numbers.length;
 
-        return new double[]{
-                average,
-                minimum,
-                maximum
-        };
+        return new double[]{average, minimum, maximum};
     }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        // Create object to call non-static methods
+        RandomNumberStatistics calculator =
+                new RandomNumberStatistics();
 
-        System.out.print("Enter number of random values to generate: ");
-        int size = sc.nextInt();
+        // Generate five random numbers
+        int[] numbers = calculator.generate4DigitRandomArray(5);
 
-        int[] numbers = generate4DigitRandomArray(size);
-
-        System.out.println("\nGenerated 4-digit numbers:");
+        // Display numbers
+        System.out.print("Random numbers: ");
 
         for (int number : numbers) {
             System.out.print(number + " ");
         }
 
-        double[] result = findAverageMinMax(numbers);
+        // Find statistics
+        double[] result = calculator.findAverageMinMax(numbers);
 
-        System.out.println("\n\nAverage: " + result[0]);
-        System.out.println("Minimum: " + (int) result[1]);
-        System.out.println("Maximum: " + (int) result[2]);
-
-        sc.close();
+        // Display results
+        System.out.println("\nAverage: " + result[0]);
+        System.out.println("Minimum: " + result[1]);
+        System.out.println("Maximum: " + result[2]);
     }
 }
