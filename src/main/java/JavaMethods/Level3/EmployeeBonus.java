@@ -1,129 +1,125 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
-import java.util.Random;
-import java.util.Scanner;
-
+/**
+ * Problem 11 (GCR — Java Methods Level 3 Assignment)
+ * Generate salary and years of service for 10 employees,
+ * calculate bonus and new salary, and display totals.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
 public class EmployeeBonus {
 
-    public static double[] generateSalaryAndService(int size) {
-
-        double[] data = new double[size * 2];
-
-        Random random = new Random();
+    // Method to generate salary and years of service
+    public static double[][] generateEmployeeData(int size) {
+        double[][] employees = new double[size][2];
 
         for (int i = 0; i < size; i++) {
 
-            // Salary between 30,000 and 80,000
-            data[i * 2] =
-                    30000 + random.nextInt(50001);
+            // Generate 5-digit salary
+            employees[i][0] =
+                    (int) (Math.random() * 90000) + 10000;
 
-            // Years of service between 1 and 10
-            data[i * 2 + 1] =
-                    1 + random.nextInt(10);
+            // Generate years of service from 1 to 10
+            employees[i][1] =
+                    (int) (Math.random() * 10) + 1;
         }
 
-        return data;
+        return employees;
     }
 
-    public static double calculateBonus(
-            double salary,
-            double yearsOfService) {
-
-        if (yearsOfService > 5) {
-            return salary * 0.05;
-        } else {
-            return salary * 0.02;
-        }
-    }
-
-    public static double[][] calculateNewSalary(
-            double[][] employeeData) {
+    // Method to calculate new salary and bonus
+    public static double[][] calculateBonus(
+            double[][] employees) {
 
         double[][] result =
-                new double[employeeData.length][3];
+                new double[employees.length][2];
 
-        for (int i = 0; i < employeeData.length; i++) {
+        for (int i = 0; i < employees.length; i++) {
 
-            double salary = employeeData[i][0];
-            double years = employeeData[i][1];
+            double salary = employees[i][0];
+            double years = employees[i][1];
 
-            double bonus =
-                    calculateBonus(salary, years);
+            double bonusRate;
 
-            double newSalary =
-                    salary + bonus;
+            // More than 5 years gets 5%, otherwise 2%
+            if (years > 5) {
+                bonusRate = 0.05;
+            } else {
+                bonusRate = 0.02;
+            }
 
-            result[i][0] = salary;
+            // Calculate bonus and new salary
+            double bonus = salary * bonusRate;
+            double newSalary = salary + bonus;
+
+            result[i][0] = newSalary;
             result[i][1] = bonus;
-            result[i][2] = newSalary;
         }
 
         return result;
     }
 
+    // Method to calculate totals
     public static double[] calculateTotals(
-            double[][] employeeData) {
+            double[][] employees,
+            double[][] result) {
 
-        double totalOldSalary = 0;
-        double totalNewSalary = 0;
-        double totalBonus = 0;
+        double oldSalaryTotal = 0;
+        double newSalaryTotal = 0;
+        double bonusTotal = 0;
 
-        for (double[] employee : employeeData) {
-
-            totalOldSalary += employee[0];
-            totalBonus += employee[1];
-            totalNewSalary += employee[2];
+        for (int i = 0; i < employees.length; i++) {
+            oldSalaryTotal += employees[i][0];
+            newSalaryTotal += result[i][0];
+            bonusTotal += result[i][1];
         }
 
         return new double[]{
-                totalOldSalary,
-                totalNewSalary,
-                totalBonus
+                oldSalaryTotal,
+                newSalaryTotal,
+                bonusTotal
         };
     }
 
     public static void main(String[] args) {
 
-        int numberOfEmployees = 10;
-
-        double[] data =
-                generateSalaryAndService(
-                        numberOfEmployees
-                );
-
+        // Generate employee data
         double[][] employees =
-                new double[numberOfEmployees][2];
+                generateEmployeeData(10);
 
-        for (int i = 0; i < numberOfEmployees; i++) {
-
-            employees[i][0] = data[i * 2];
-            employees[i][1] = data[i * 2 + 1];
-        }
-
+        // Calculate bonus and new salary
         double[][] result =
-                calculateNewSalary(employees);
+                calculateBonus(employees);
 
+        // Calculate totals
+        double[] totals =
+                calculateTotals(employees, result);
+
+        // Display table
         System.out.println(
-                "Employee\tOld Salary\tService\tBonus\tNew Salary"
-        );
+                "Employee\tOld Salary\tYears\tBonus\tNew Salary");
 
-        for (int i = 0; i < numberOfEmployees; i++) {
+        for (int i = 0; i < employees.length; i++) {
 
             System.out.printf(
                     "%d\t\t%.2f\t%.0f\t%.2f\t%.2f%n",
                     i + 1,
-                    result[i][0],
+                    employees[i][0],
                     employees[i][1],
                     result[i][1],
-                    result[i][2]
+                    result[i][0]
             );
         }
 
-        double[] totals =
-                calculateTotals(result);
+        // Display totals
+        System.out.println("\nTotal Old Salary: "
+                + totals[0]);
 
-        System.out.println("\nTotal Old Salary: " + totals[0]);
-        System.out.println("Total New Salary: " + totals[1]);
-        System.out.println("Total Bonus: " + totals[2]);
+        System.out.println("Total New Salary: "
+                + totals[1]);
+
+        System.out.println("Total Bonus: "
+                + totals[2]);
     }
 }
