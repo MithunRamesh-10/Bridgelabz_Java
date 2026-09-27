@@ -1,33 +1,47 @@
-package javaMethods.Level1;
+package javaMethods.level1;
 
 import java.util.Scanner;
 
-public class ChocolateDistribution {
+/**
+ * Problem 10 (GCR — Java Methods Level 1 Assignment)
+ * Divide N chocolates equally among M children.
+ * Find the chocolates each child gets and the remaining chocolates.
+ *
+ * Author : Hemang
+ * Date : 23-09-2026
+ */
+public class DivideChocolates {
 
+    // Method to find chocolates per child and remaining chocolates
     public static int[] findRemainderAndQuotient(int number, int divisor) {
-        int quotient = number / divisor;
-        int remainder = number % divisor;
+        int chocolatesPerChild = number / divisor;
+        int remainingChocolates = number % divisor;
 
-        return new int[]{quotient, remainder};
+        // Return chocolates per child and remaining chocolates
+        return new int[]{chocolatesPerChild, remainingChocolates};
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
+        // Take number of chocolates
         System.out.print("Enter number of chocolates: ");
-        int numberOfChocolates = sc.nextInt();
+        int numberOfChocolates = input.nextInt();
 
+        // Take number of children
         System.out.print("Enter number of children: ");
-        int numberOfChildren = sc.nextInt();
+        int numberOfChildren = input.nextInt();
 
+        // Call method
         int[] result = findRemainderAndQuotient(
                 numberOfChocolates,
                 numberOfChildren
         );
 
-        System.out.println("Each child will get: " + result[0] + " chocolates");
+        // Display results
+        System.out.println("Chocolates per child: " + result[0]);
         System.out.println("Remaining chocolates: " + result[1]);
 
-        sc.close();
+        input.close();
     }
 }
