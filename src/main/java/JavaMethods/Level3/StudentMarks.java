@@ -1,60 +1,61 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
-import java.util.Random;
 import java.util.Scanner;
 
-public class StudentMarks {
+/**
+ * Problem 12 (GCR — Java Methods Level 3 Assignment)
+ * Generate PCM marks for students and calculate total,
+ * average, percentage, and grade.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class StudentScorecard {
 
-    public static int[][] generateMarks(int numberOfStudents) {
+    // Method to generate random PCM scores
+    public static int[][] generateScores(int students) {
+        int[][] scores = new int[students][3];
 
-        int[][] marks =
-                new int[numberOfStudents][3];
-
-        Random random = new Random();
-
-        for (int i = 0; i < numberOfStudents; i++) {
-
-            // Two digit scores: 10 - 99
-            marks[i][0] = 10 + random.nextInt(90);
-            marks[i][1] = 10 + random.nextInt(90);
-            marks[i][2] = 10 + random.nextInt(90);
+        for (int i = 0; i < students; i++) {
+            // Generate 2-digit marks from 10 to 99
+            scores[i][0] = (int) (Math.random() * 90) + 10;
+            scores[i][1] = (int) (Math.random() * 90) + 10;
+            scores[i][2] = (int) (Math.random() * 90) + 10;
         }
 
-        return marks;
+        return scores;
     }
 
-    public static double[][] calculateResults(
-            int[][] marks) {
+    // Method to calculate total, average and percentage
+    public static double[][] calculateResults(int[][] scores) {
+        double[][] results = new double[scores.length][3];
 
-        double[][] results =
-                new double[marks.length][3];
+        for (int i = 0; i < scores.length; i++) {
+            // Calculate total
+            int total = scores[i][0]
+                    + scores[i][1]
+                    + scores[i][2];
 
-        for (int i = 0; i < marks.length; i++) {
+            // Calculate average
+            double average = (double) total / 3;
 
-            int total =
-                    marks[i][0] +
-                            marks[i][1] +
-                            marks[i][2];
+            // Calculate percentage
+            double percentage = average;
 
-            double average =
-                    (double) total / 3;
-
-            double percentage =
-                    (total / 300.0) * 100;
+            // Round average and percentage to 2 decimal places
+            average = Math.round(average * 100.0) / 100.0;
+            percentage = Math.round(percentage * 100.0) / 100.0;
 
             results[i][0] = total;
-            results[i][1] =
-                    Math.round(average * 100) / 100.0;
-
-            results[i][2] =
-                    Math.round(percentage * 100) / 100.0;
+            results[i][1] = average;
+            results[i][2] = percentage;
         }
 
         return results;
     }
 
+    // Method to get grade
     public static String getGrade(double percentage) {
-
         if (percentage >= 80) {
             return "A";
         } else if (percentage >= 70) {
@@ -70,42 +71,59 @@ public class StudentMarks {
         }
     }
 
-    public static void main(String[] args) {
+    // Method to display scorecard
+    public static void displayScorecard(
+            int[][] scores,
+            double[][] results) {
 
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print(
-                "Enter number of students: "
+        // Display table heading
+        System.out.printf(
+                "%-10s %-10s %-10s %-10s %-10s %-10s %-12s %-6s%n",
+                "Student",
+                "Physics",
+                "Chemistry",
+                "Maths",
+                "Total",
+                "Average",
+                "Percentage",
+                "Grade"
         );
 
-        int numberOfStudents =
-                sc.nextInt();
+        // Display student details
+        for (int i = 0; i < scores.length; i++) {
 
-        int[][] marks =
-                generateMarks(numberOfStudents);
-
-        double[][] results =
-                calculateResults(marks);
-
-        System.out.println(
-                "\nStudent\tPhysics\tChemistry\tMaths\tTotal\tAverage\tPercentage\tGrade"
-        );
-
-        for (int i = 0; i < numberOfStudents; i++) {
+            String grade = getGrade(results[i][2]);
 
             System.out.printf(
-                    "%d\t%d\t%d\t\t%d\t%.0f\t%.2f\t%.2f\t\t%s%n",
+                    "%-10d %-10d %-10d %-10d %-10.0f %-10.2f %-12.2f %-6s%n",
                     i + 1,
-                    marks[i][0],
-                    marks[i][1],
-                    marks[i][2],
+                    scores[i][0],
+                    scores[i][1],
+                    scores[i][2],
                     results[i][0],
                     results[i][1],
                     results[i][2],
-                    getGrade(results[i][2])
+                    grade
             );
         }
+    }
 
-        sc.close();
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Take number of students
+        System.out.print("Enter number of students: ");
+        int students = input.nextInt();
+
+        // Generate scores
+        int[][] scores = generateScores(students);
+
+        // Calculate results
+        double[][] results = calculateResults(scores);
+
+        // Display scorecard
+        displayScorecard(scores, results);
+
+        input.close();
     }
 }
