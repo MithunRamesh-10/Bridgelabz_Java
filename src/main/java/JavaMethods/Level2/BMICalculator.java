@@ -1,34 +1,43 @@
-package javaMethods.Level1;
+package javaMethods.level2;
 
 import java.util.Scanner;
 
+/**
+ * Problem 10 (GCR — Java Methods Level 2 Assignment)
+ * Calculate BMI for 10 persons using a 2D array and
+ * display weight, height, BMI, and BMI status.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
 public class BMICalculator {
 
-    public static double[] calculateBMI(double[][] data) {
-        double[] bmi = new double[data.length];
+    // Method to calculate BMI for every person
+    public static void calculateBMI(double[][] persons) {
 
-        for (int i = 0; i < data.length; i++) {
-            double weight = data[i][0];
-            double heightInCm = data[i][1];
+        for (int i = 0; i < persons.length; i++) {
 
-            double heightInMeters = heightInCm / 100;
+            // Convert height from centimetres to metres
+            double heightInMeters = persons[i][1] / 100;
 
-            bmi[i] = weight / Math.pow(heightInMeters, 2);
+            // Calculate BMI
+            persons[i][2] = persons[i][0]
+                    / (heightInMeters * heightInMeters);
         }
-
-        return bmi;
     }
 
-    public static String[] determineBMIStatus(double[] bmi) {
-        String[] status = new String[bmi.length];
+    // Method to determine BMI status
+    public static String[] findBMIStatus(double[][] persons) {
+        String[] status = new String[persons.length];
 
-        for (int i = 0; i < bmi.length; i++) {
+        for (int i = 0; i < persons.length; i++) {
+            double bmi = persons[i][2];
 
-            if (bmi[i] <= 18.4) {
+            if (bmi <= 18.4) {
                 status[i] = "Underweight";
-            } else if (bmi[i] <= 24.9) {
+            } else if (bmi <= 24.9) {
                 status[i] = "Normal";
-            } else if (bmi[i] <= 39.9) {
+            } else if (bmi <= 39.9) {
                 status[i] = "Overweight";
             } else {
                 status[i] = "Obese";
@@ -39,44 +48,39 @@ public class BMICalculator {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Create 10 rows and 3 columns
+        double[][] persons = new double[10][3];
 
-        double[][] data = new double[10][2];
+        // Take weight and height input
+        for (int i = 0; i < persons.length; i++) {
+            System.out.print("Enter weight (kg) for person "
+                    + (i + 1) + ": ");
+            persons[i][0] = input.nextDouble();
 
-        // Input weight and height
-        for (int i = 0; i < data.length; i++) {
-
-            System.out.println("\nPerson " + (i + 1));
-
-            System.out.print("Enter weight in kg: ");
-            data[i][0] = sc.nextDouble();
-
-            System.out.print("Enter height in cm: ");
-            data[i][1] = sc.nextDouble();
+            System.out.print("Enter height (cm) for person "
+                    + (i + 1) + ": ");
+            persons[i][1] = input.nextDouble();
         }
 
-        double[] bmi = calculateBMI(data);
+        // Calculate BMI
+        calculateBMI(persons);
 
-        String[] status = determineBMIStatus(bmi);
+        // Find BMI status
+        String[] status = findBMIStatus(persons);
 
         // Display results
-        System.out.println("\nBMI Results");
-        System.out.println("--------------------------------------------");
-        System.out.println("Person\tWeight\tHeight\tBMI\tStatus");
+        System.out.println("\nWeight\tHeight\tBMI\tStatus");
 
-        for (int i = 0; i < data.length; i++) {
-
-            System.out.printf(
-                    "%d\t%.2f\t%.2f\t%.2f\t%s%n",
-                    i + 1,
-                    data[i][0],
-                    data[i][1],
-                    bmi[i],
-                    status[i]
-            );
+        for (int i = 0; i < persons.length; i++) {
+            System.out.printf("%.2f\t%.2f\t%.2f\t%s%n",
+                    persons[i][0],
+                    persons[i][1],
+                    persons[i][2],
+                    status[i]);
         }
 
-        sc.close();
+        input.close();
     }
 }
