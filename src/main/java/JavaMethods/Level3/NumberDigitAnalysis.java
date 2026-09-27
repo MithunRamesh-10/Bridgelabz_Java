@@ -1,44 +1,47 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
 import java.util.Scanner;
 
-public class NumberDigitAnalysis {
+/**
+ * Problem 3 (GCR — Java Methods Level 3 Assignment)
+ * Find digit sum, sum of squares, check Harshad number,
+ * and find the frequency of each digit.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class NumberDigitProperties {
 
+    // Method to count digits
     public static int countDigits(int number) {
-
-        number = Math.abs(number);
-
-        if (number == 0) {
-            return 1;
-        }
-
         int count = 0;
+        int temp = number;
 
-        while (number > 0) {
+        while (temp > 0) {
             count++;
-            number /= 10;
+            temp /= 10;
         }
 
         return count;
     }
 
-    public static int[] storeDigits(int number) {
-
-        number = Math.abs(number);
-
+    // Method to store digits in an array
+    public static int[] getDigits(int number) {
         int count = countDigits(number);
         int[] digits = new int[count];
 
+        int temp = number;
+
         for (int i = count - 1; i >= 0; i--) {
-            digits[i] = number % 10;
-            number /= 10;
+            digits[i] = temp % 10;
+            temp /= 10;
         }
 
         return digits;
     }
 
-    public static int findSum(int[] digits) {
-
+    // Method to find sum of digits
+    public static int findDigitSum(int[] digits) {
         int sum = 0;
 
         for (int digit : digits) {
@@ -48,33 +51,34 @@ public class NumberDigitAnalysis {
         return sum;
     }
 
-    public static int findSumOfSquares(int[] digits) {
-
-        int sum = 0;
+    // Method to find sum of squares of digits
+    public static double findSquareSum(int[] digits) {
+        double sum = 0;
 
         for (int digit : digits) {
-            sum += (int) Math.pow(digit, 2);
+            sum += Math.pow(digit, 2);
         }
 
         return sum;
     }
 
+    // Method to check Harshad number
     public static boolean isHarshadNumber(int number, int[] digits) {
+        int sum = findDigitSum(digits);
 
-        int sum = findSum(digits);
-
-        return sum != 0 && number % sum == 0;
+        return number % sum == 0;
     }
 
+    // Method to find frequency of each digit
     public static int[][] findDigitFrequency(int[] digits) {
-
         int[][] frequency = new int[10][2];
 
+        // Store digits from 0 to 9
         for (int i = 0; i < 10; i++) {
             frequency[i][0] = i;
-            frequency[i][1] = 0;
         }
 
+        // Count frequency
         for (int digit : digits) {
             frequency[digit][1]++;
         }
@@ -83,41 +87,35 @@ public class NumberDigitAnalysis {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take number input
         System.out.print("Enter a number: ");
-        int number = sc.nextInt();
+        int number = input.nextInt();
 
-        int[] digits = storeDigits(number);
+        // Get digits
+        int[] digits = getDigits(number);
 
-        System.out.println("Sum of digits: " + findSum(digits));
-
-        System.out.println(
-                "Sum of squares of digits: " +
-                        findSumOfSquares(digits)
-        );
-
-        System.out.println(
-                "Harshad Number: " +
-                        isHarshadNumber(Math.abs(number), digits)
-        );
-
+        // Calculate results
+        int sum = findDigitSum(digits);
+        double squareSum = findSquareSum(digits);
+        boolean harshad = isHarshadNumber(number, digits);
         int[][] frequency = findDigitFrequency(digits);
 
-        System.out.println("\nDigit Frequency:");
+        // Display results
+        System.out.println("Sum of digits: " + sum);
+        System.out.println("Sum of squares: " + squareSum);
+        System.out.println("Harshad Number: " + harshad);
 
-        for (int i = 0; i < 10; i++) {
+        System.out.println("Digit Frequency:");
 
+        for (int i = 0; i < frequency.length; i++) {
             if (frequency[i][1] > 0) {
                 System.out.println(
-                        frequency[i][0] +
-                                " -> " +
-                                frequency[i][1]
-                );
+                        frequency[i][0] + " -> " + frequency[i][1]);
             }
         }
 
-        sc.close();
+        input.close();
     }
 }
