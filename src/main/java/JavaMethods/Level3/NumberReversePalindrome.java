@@ -1,44 +1,47 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
 import java.util.Scanner;
 
-public class NumberReversePalindrome {
+/**
+ * Problem 4 (GCR — Java Methods Level 3 Assignment)
+ * Reverse the digits of a number, compare digit arrays,
+ * and check whether the number is a palindrome or Duck number.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class PalindromeDuckNumber {
 
+    // Method to count digits
     public static int countDigits(int number) {
-
-        number = Math.abs(number);
-
-        if (number == 0) {
-            return 1;
-        }
-
         int count = 0;
+        int temp = number;
 
-        while (number > 0) {
+        while (temp > 0) {
             count++;
-            number /= 10;
+            temp /= 10;
         }
 
         return count;
     }
 
-    public static int[] storeDigits(int number) {
-
-        number = Math.abs(number);
-
+    // Method to store digits in an array
+    public static int[] getDigits(int number) {
         int count = countDigits(number);
         int[] digits = new int[count];
 
+        int temp = number;
+
         for (int i = count - 1; i >= 0; i--) {
-            digits[i] = number % 10;
-            number /= 10;
+            digits[i] = temp % 10;
+            temp /= 10;
         }
 
         return digits;
     }
 
+    // Method to reverse a digit array
     public static int[] reverseArray(int[] digits) {
-
         int[] reversed = new int[digits.length];
 
         for (int i = 0; i < digits.length; i++) {
@@ -48,7 +51,8 @@ public class NumberReversePalindrome {
         return reversed;
     }
 
-    public static boolean areArraysEqual(int[] first, int[] second) {
+    // Method to compare two arrays
+    public static boolean compareArrays(int[] first, int[] second) {
 
         if (first.length != second.length) {
             return false;
@@ -63,13 +67,14 @@ public class NumberReversePalindrome {
         return true;
     }
 
+    // Method to check palindrome
     public static boolean isPalindrome(int[] digits) {
-
         int[] reversed = reverseArray(digits);
 
-        return areArraysEqual(digits, reversed);
+        return compareArrays(digits, reversed);
     }
 
+    // Method to check Duck number
     public static boolean isDuckNumber(int[] digits) {
 
         for (int digit : digits) {
@@ -82,38 +87,23 @@ public class NumberReversePalindrome {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take number input
         System.out.print("Enter a number: ");
-        int number = sc.nextInt();
+        int number = input.nextInt();
 
-        int[] digits = storeDigits(number);
-        int[] reversed = reverseArray(digits);
+        // Get digits
+        int[] digits = getDigits(number);
 
-        System.out.print("Digits: ");
+        // Check palindrome and Duck number
+        boolean palindrome = isPalindrome(digits);
+        boolean duck = isDuckNumber(digits);
 
-        for (int digit : digits) {
-            System.out.print(digit + " ");
-        }
+        // Display results
+        System.out.println("Palindrome Number: " + palindrome);
+        System.out.println("Duck Number: " + duck);
 
-        System.out.print("\nReversed: ");
-
-        for (int digit : reversed) {
-            System.out.print(digit + " ");
-        }
-
-        System.out.println();
-
-        System.out.println("Arrays Equal: " +
-                areArraysEqual(digits, reversed));
-
-        System.out.println("Palindrome: " +
-                isPalindrome(digits));
-
-        System.out.println("Duck Number: " +
-                isDuckNumber(digits));
-
-        sc.close();
+        input.close();
     }
 }
