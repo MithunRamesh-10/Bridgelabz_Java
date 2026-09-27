@@ -1,42 +1,47 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
 import java.util.Scanner;
 
+/**
+ * Problem 2 (GCR — Java Methods Level 3 Assignment)
+ * Check digit properties of a number including Duck and
+ * Armstrong numbers and find largest and smallest digits.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
 public class NumberChecker {
 
+    // Method to count digits
     public static int countDigits(int number) {
-        number = Math.abs(number);
-
-        if (number == 0) {
-            return 1;
-        }
-
         int count = 0;
+        int temp = number;
 
-        while (number > 0) {
+        while (temp > 0) {
             count++;
-            number /= 10;
+            temp /= 10;
         }
 
         return count;
     }
 
-    public static int[] storeDigits(int number) {
-        number = Math.abs(number);
-
+    // Method to store digits in an array
+    public static int[] getDigits(int number) {
         int count = countDigits(number);
         int[] digits = new int[count];
 
+        int temp = number;
+
         for (int i = count - 1; i >= 0; i--) {
-            digits[i] = number % 10;
-            number /= 10;
+            digits[i] = temp % 10;
+            temp /= 10;
         }
 
         return digits;
     }
 
+    // Method to check Duck number
     public static boolean isDuckNumber(int[] digits) {
-
         for (int digit : digits) {
             if (digit == 0) {
                 return true;
@@ -46,24 +51,24 @@ public class NumberChecker {
         return false;
     }
 
+    // Method to check Armstrong number
     public static boolean isArmstrongNumber(int number, int[] digits) {
-
         int sum = 0;
+        int count = digits.length;
 
         for (int digit : digits) {
-            sum += (int) Math.pow(digit, digits.length);
+            sum += (int) Math.pow(digit, count);
         }
 
         return sum == number;
     }
 
-    public static int[] findLargestAndSecondLargest(int[] digits) {
-
+    // Method to find largest and second largest digits
+    public static int[] findLargestTwo(int[] digits) {
         int largest = Integer.MIN_VALUE;
         int secondLargest = Integer.MIN_VALUE;
 
         for (int digit : digits) {
-
             if (digit > largest) {
                 secondLargest = largest;
                 largest = digit;
@@ -75,13 +80,12 @@ public class NumberChecker {
         return new int[]{largest, secondLargest};
     }
 
-    public static int[] findSmallestAndSecondSmallest(int[] digits) {
-
+    // Method to find smallest and second smallest digits
+    public static int[] findSmallestTwo(int[] digits) {
         int smallest = Integer.MAX_VALUE;
         int secondSmallest = Integer.MAX_VALUE;
 
         for (int digit : digits) {
-
             if (digit < smallest) {
                 secondSmallest = smallest;
                 smallest = digit;
@@ -94,39 +98,35 @@ public class NumberChecker {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take number input
         System.out.print("Enter a number: ");
-        int number = sc.nextInt();
+        int number = input.nextInt();
 
-        int[] digits = storeDigits(number);
+        // Get digits
+        int[] digits = getDigits(number);
 
-        System.out.print("Digits: ");
+        // Check Duck number
+        boolean duck = isDuckNumber(digits);
 
-        for (int digit : digits) {
-            System.out.print(digit + " ");
-        }
+        // Check Armstrong number
+        boolean armstrong = isArmstrongNumber(number, digits);
 
-        System.out.println();
+        // Find largest digits
+        int[] largest = findLargestTwo(digits);
 
-        System.out.println("Duck Number: " + isDuckNumber(digits));
+        // Find smallest digits
+        int[] smallest = findSmallestTwo(digits);
 
-        System.out.println(
-                "Armstrong Number: " +
-                        isArmstrongNumber(number, digits)
-        );
+        // Display results
+        System.out.println("Duck Number: " + duck);
+        System.out.println("Armstrong Number: " + armstrong);
+        System.out.println("Largest Digit: " + largest[0]);
+        System.out.println("Second Largest Digit: " + largest[1]);
+        System.out.println("Smallest Digit: " + smallest[0]);
+        System.out.println("Second Smallest Digit: " + smallest[1]);
 
-        int[] largest = findLargestAndSecondLargest(digits);
-
-        System.out.println("Largest: " + largest[0]);
-        System.out.println("Second Largest: " + largest[1]);
-
-        int[] smallest = findSmallestAndSecondSmallest(digits);
-
-        System.out.println("Smallest: " + smallest[0]);
-        System.out.println("Second Smallest: " + smallest[1]);
-
-        sc.close();
+        input.close();
     }
 }
