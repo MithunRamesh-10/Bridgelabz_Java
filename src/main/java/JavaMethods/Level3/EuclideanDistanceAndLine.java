@@ -1,80 +1,92 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
-import java.util.Scanner;
+/**
+ * Problem 1 (GCR — Java Methods Level 3 Assignment)
+ * Generate heights of 11 football players and find the
+ * sum, mean, shortest, and tallest height.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class FootballPlayerHeights {
 
-public class EuclideanDistanceAndLine {
+    // Method to generate random heights
+    public static int[] generateHeights() {
+        int[] heights = new int[11];
 
-    public static double findDistance(
-            double x1,
-            double y1,
-            double x2,
-            double y2) {
+        for (int i = 0; i < heights.length; i++) {
+            // Generate height from 150 to 250 cm
+            heights[i] = (int) (Math.random() * 101) + 150;
+        }
 
-        return Math.sqrt(
-                Math.pow(x2 - x1, 2) +
-                        Math.pow(y2 - y1, 2)
-        );
+        return heights;
     }
 
-    public static double[] findLineEquation(
-            double x1,
-            double y1,
-            double x2,
-            double y2) {
+    // Method to find sum of heights
+    public static int findSum(int[] heights) {
+        int sum = 0;
 
-        double slope = (y2 - y1) / (x2 - x1);
+        for (int height : heights) {
+            sum += height;
+        }
 
-        double intercept = y1 - slope * x1;
+        return sum;
+    }
 
-        return new double[]{slope, intercept};
+    // Method to find mean height
+    public static double findMean(int[] heights) {
+        int sum = findSum(heights);
+        return (double) sum / heights.length;
+    }
+
+    // Method to find shortest height
+    public static int findShortest(int[] heights) {
+        int shortest = heights[0];
+
+        for (int height : heights) {
+            if (height < shortest) {
+                shortest = height;
+            }
+        }
+
+        return shortest;
+    }
+
+    // Method to find tallest height
+    public static int findTallest(int[] heights) {
+        int tallest = heights[0];
+
+        for (int height : heights) {
+            if (height > tallest) {
+                tallest = height;
+            }
+        }
+
+        return tallest;
     }
 
     public static void main(String[] args) {
 
-        Scanner sc = new Scanner(System.in);
+        // Generate heights
+        int[] heights = generateHeights();
 
-        System.out.print("Enter x1: ");
-        double x1 = sc.nextDouble();
+        // Display heights
+        System.out.print("Player heights: ");
 
-        System.out.print("Enter y1: ");
-        double y1 = sc.nextDouble();
-
-        System.out.print("Enter x2: ");
-        double x2 = sc.nextDouble();
-
-        System.out.print("Enter y2: ");
-        double y2 = sc.nextDouble();
-
-        double distance = findDistance(x1, y1, x2, y2);
-
-        System.out.println(
-                "Euclidean Distance: " + distance
-        );
-
-        if (x1 == x2) {
-
-            System.out.println(
-                    "Equation of line: x = " + x1
-            );
-
-        } else {
-
-            double[] equation =
-                    findLineEquation(x1, y1, x2, y2);
-
-            double slope = equation[0];
-            double intercept = equation[1];
-
-            System.out.println("Slope: " + slope);
-            System.out.println("Y-Intercept: " + intercept);
-
-            System.out.println(
-                    "Equation: y = " +
-                            slope + "x + " +
-                            intercept
-            );
+        for (int height : heights) {
+            System.out.print(height + " ");
         }
 
-        sc.close();
+        // Calculate results
+        int sum = findSum(heights);
+        double mean = findMean(heights);
+        int shortest = findShortest(heights);
+        int tallest = findTallest(heights);
+
+        // Display results
+        System.out.println("\nSum: " + sum);
+        System.out.println("Mean: " + mean);
+        System.out.println("Shortest: " + shortest + " cm");
+        System.out.println("Tallest: " + tallest + " cm");
     }
 }
