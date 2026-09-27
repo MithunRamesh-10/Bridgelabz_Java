@@ -1,32 +1,42 @@
-package javaMethods.Level1;
+package javaMethods.level1;
 
 import java.util.Scanner;
 
-public class TriangularParkRounds {
+/**
+ * Problem 4 (GCR — Java Methods Level 1 Assignment)
+ * Calculate the number of rounds an athlete must complete
+ * around a triangular park to complete a 5 km run.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class AthleteRounds {
 
+    // Method to calculate number of rounds
     public static double calculateRounds(double side1, double side2, double side3) {
         double perimeter = side1 + side2 + side3;
-        double distance = 5000; // 5 km = 5000 meters
-
-        return distance / perimeter;
+        return 5000 / perimeter;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter side 1 of triangle in meters: ");
-        double side1 = sc.nextDouble();
+        // Take three sides of triangle
+        System.out.print("Enter first side in meters: ");
+        double side1 = input.nextDouble();
 
-        System.out.print("Enter side 2 of triangle in meters: ");
-        double side2 = sc.nextDouble();
+        System.out.print("Enter second side in meters: ");
+        double side2 = input.nextDouble();
 
-        System.out.print("Enter side 3 of triangle in meters: ");
-        double side3 = sc.nextDouble();
+        System.out.print("Enter third side in meters: ");
+        double side3 = input.nextDouble();
 
+        // Call method to calculate rounds
         double rounds = calculateRounds(side1, side2, side3);
 
-        System.out.println("Number of rounds required to complete 5 km: " + rounds);
+        // Display result
+        System.out.println("Number of rounds required: " + rounds);
 
-        sc.close();
+        input.close();
     }
 }
