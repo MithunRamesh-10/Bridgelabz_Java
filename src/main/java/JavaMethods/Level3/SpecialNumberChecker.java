@@ -1,95 +1,129 @@
-package javaMethods.Level3;
+package javaMethods.level3;
 
 import java.util.Scanner;
 
-public class SpecialNumberChecker {
+/**
+ * Problem 12 (GCR — Java Methods Level 3 Assignment)
+ * Generate PCM marks for students and calculate total,
+ * average, percentage, and grade.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class StudentScorecard {
 
-    public static boolean isPrime(int number) {
+    // Method to generate random PCM scores
+    public static int[][] generateScores(int students) {
+        int[][] scores = new int[students][3];
 
-        if (number <= 1) {
-            return false;
+        for (int i = 0; i < students; i++) {
+            // Generate 2-digit marks from 10 to 99
+            scores[i][0] = (int) (Math.random() * 90) + 10;
+            scores[i][1] = (int) (Math.random() * 90) + 10;
+            scores[i][2] = (int) (Math.random() * 90) + 10;
         }
 
-        for (int i = 2; i <= Math.sqrt(number); i++) {
+        return scores;
+    }
 
-            if (number % i == 0) {
-                return false;
-            }
+    // Method to calculate total, average and percentage
+    public static double[][] calculateResults(int[][] scores) {
+        double[][] results = new double[scores.length][3];
+
+        for (int i = 0; i < scores.length; i++) {
+            // Calculate total
+            int total = scores[i][0]
+                    + scores[i][1]
+                    + scores[i][2];
+
+            // Calculate average
+            double average = (double) total / 3;
+
+            // Calculate percentage
+            double percentage = average;
+
+            // Round average and percentage to 2 decimal places
+            average = Math.round(average * 100.0) / 100.0;
+            percentage = Math.round(percentage * 100.0) / 100.0;
+
+            results[i][0] = total;
+            results[i][1] = average;
+            results[i][2] = percentage;
         }
 
-        return true;
+        return results;
     }
 
-    public static int sumOfDigits(int number) {
-
-        number = Math.abs(number);
-
-        int sum = 0;
-
-        while (number > 0) {
-            sum += number % 10;
-            number /= 10;
+    // Method to get grade
+    public static String getGrade(double percentage) {
+        if (percentage >= 80) {
+            return "A";
+        } else if (percentage >= 70) {
+            return "B";
+        } else if (percentage >= 60) {
+            return "C";
+        } else if (percentage >= 50) {
+            return "D";
+        } else if (percentage >= 40) {
+            return "E";
+        } else {
+            return "R";
         }
-
-        return sum;
     }
 
-    public static int productOfDigits(int number) {
+    // Method to display scorecard
+    public static void displayScorecard(
+            int[][] scores,
+            double[][] results) {
 
-        number = Math.abs(number);
+        // Display table heading
+        System.out.printf(
+                "%-10s %-10s %-10s %-10s %-10s %-10s %-12s %-6s%n",
+                "Student",
+                "Physics",
+                "Chemistry",
+                "Maths",
+                "Total",
+                "Average",
+                "Percentage",
+                "Grade"
+        );
 
-        if (number == 0) {
-            return 0;
+        // Display student details
+        for (int i = 0; i < scores.length; i++) {
+
+            String grade = getGrade(results[i][2]);
+
+            System.out.printf(
+                    "%-10d %-10d %-10d %-10d %-10.0f %-10.2f %-12.2f %-6s%n",
+                    i + 1,
+                    scores[i][0],
+                    scores[i][1],
+                    scores[i][2],
+                    results[i][0],
+                    results[i][1],
+                    results[i][2],
+                    grade
+            );
         }
-
-        int product = 1;
-
-        while (number > 0) {
-            product *= number % 10;
-            number /= 10;
-        }
-
-        return product;
-    }
-
-    public static boolean isNeon(int number) {
-
-        int square = number * number;
-
-        return sumOfDigits(square) == number;
-    }
-
-    public static boolean isSpy(int number) {
-
-        return sumOfDigits(number) == productOfDigits(number);
-    }
-
-    public static boolean isAutomorphic(int number) {
-
-        int square = number * number;
-
-        return String.valueOf(square)
-                .endsWith(String.valueOf(number));
-    }
-
-    public static boolean isBuzz(int number) {
-
-        return number % 7 == 0 || number % 10 == 7;
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take number of students
+        System.out.print("Enter number of students: ");
+        int students = input.nextInt();
 
-        System.out.print("Enter a number: ");
-        int number = sc.nextInt();
+        // Generate scores
+        int[][] scores = generateScores(students);
 
-        System.out.println("Prime: " + isPrime(number));
-        System.out.println("Neon: " + isNeon(number));
-        System.out.println("Spy: " + isSpy(number));
-        System.out.println("Automorphic: " + isAutomorphic(number));
-        System.out.println("Buzz: " + isBuzz(number));
+        // Calculate results
+        double[][] results = calculateResults(scores);
 
-        sc.close();
+        // Display scorecard
+        displayScorecard(scores, results);
+
+        input.close();
     }
 }
