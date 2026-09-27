@@ -1,10 +1,19 @@
-package javaMethods.Level1;
+package javaMethods.level1;
 
 import java.util.Scanner;
 
-public class WindChillTemperature {
+/**
+ * Problem 11 (GCR — Java Methods Level 1 Assignment)
+ * Calculate the wind chill temperature using the given temperature
+ * and wind speed values.
+ *
+ * Author : Mithun
+ * Date : 23-09-2026
+ */
+public class WindChill {
 
-    public static double calculateWindChill(double temperature, double windSpeed) {
+    // Method to calculate wind chill temperature
+    public double calculateWindChill(double temperature, double windSpeed) {
         return 35.74
                 + (0.6215 * temperature)
                 + ((0.4275 * temperature - 35.75)
@@ -12,18 +21,26 @@ public class WindChillTemperature {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
 
+        // Take temperature input
         System.out.print("Enter temperature: ");
-        double temperature = sc.nextDouble();
+        double temperature = input.nextDouble();
 
+        // Take wind speed input
         System.out.print("Enter wind speed: ");
-        double windSpeed = sc.nextDouble();
+        double windSpeed = input.nextDouble();
 
-        double windChill = calculateWindChill(temperature, windSpeed);
+        // Create object to call non-static method
+        WindChill windChillCalculator = new WindChill();
 
+        // Call method to calculate wind chill
+        double windChill = windChillCalculator.calculateWindChill(
+                temperature, windSpeed);
+
+        // Display result
         System.out.println("Wind Chill Temperature: " + windChill);
 
-        sc.close();
+        input.close();
     }
 }
