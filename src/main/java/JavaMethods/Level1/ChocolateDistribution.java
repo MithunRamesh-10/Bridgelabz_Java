@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Divide N chocolates equally among M children.
  * Find the chocolates each child gets and the remaining chocolates.
  *
- * Author : Hemang
+ * Author : Mithun 
  * Date : 23-09-2026
  */
 public class DivideChocolates {
