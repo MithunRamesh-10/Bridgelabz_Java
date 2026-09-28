@@ -1,16 +1,27 @@
+package javaString.level1;
+
 import java.util.Scanner;
 
-public class CompareStringsUsingCharAt {
+/**
+ * Problem 1 (GCR — Java String Level 1 Assignment)
+ * Write a program to compare two strings using the charAt() method
+ * and check the result with the built-in String equals() method.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class CompareStrings {
 
-    public static boolean compareStrings(String str1, String str2) {
-
-        if (str1.length() != str2.length()) {
+    // Compare two strings character by character using charAt()
+    public static boolean compareUsingCharAt(String first, String second) {
+        // Check if the lengths are different
+        if (first.length() != second.length()) {
             return false;
         }
 
-        for (int i = 0; i < str1.length(); i++) {
-
-            if (str1.charAt(i) != str2.charAt(i)) {
+        // Compare each character
+        for (int i = 0; i < first.length(); i++) {
+            if (first.charAt(i) != second.charAt(i)) {
                 return false;
             }
         }
@@ -19,25 +30,29 @@ public class CompareStringsUsingCharAt {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-
+        // Take two string inputs
         System.out.print("Enter first string: ");
-        String str1 = scanner.next();
+        String first = input.next();
 
         System.out.print("Enter second string: ");
-        String str2 = scanner.next();
+        String second = input.next();
 
-        boolean userDefinedResult = compareStrings(str1, str2);
+        // Compare using user-defined method
+        boolean userDefinedResult = compareUsingCharAt(first, second);
 
-        boolean builtInResult = str1.equals(str2);
+        // Compare using built-in equals() method
+        boolean builtInResult = first.equals(second);
 
-        System.out.println("User-defined comparison: " + userDefinedResult);
-        System.out.println("Built-in equals() result: " + builtInResult);
+        // Display both results
+        System.out.println("Comparison using charAt(): " + userDefinedResult);
+        System.out.println("Comparison using equals(): " + builtInResult);
 
+        // Check whether both results are the same
         System.out.println("Both results are same: "
                 + (userDefinedResult == builtInResult));
 
-        scanner.close();
+        input.close();
     }
 }
