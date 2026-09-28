@@ -1,9 +1,19 @@
+package javaString.level2;
+
 import java.util.Scanner;
 
+/**
+ * Problem 9 (GCR — Java String Level 2 Assignment)
+ * Create a Rock-Paper-Scissors game between the user
+ * and computer and display winning statistics.
+ *
+ * Author : Hemang
+ * Date : 25-09-2026
+ */
 public class RockPaperScissors {
 
-    static String getComputerChoice() {
-
+    // Generate computer choice using Math.random()
+    public static String getComputerChoice() {
         int choice = (int) (Math.random() * 3);
 
         if (choice == 0) {
@@ -15,49 +25,124 @@ public class RockPaperScissors {
         }
     }
 
-    static String findWinner(String user, String computer) {
+    // Find the winner between user and computer
+    public static String findWinner(
+            String userChoice,
+            String computerChoice) {
 
-        if (user.equals(computer)) {
+        // Check for a draw
+        if (userChoice.equals(computerChoice)) {
             return "Draw";
         }
 
-        if ((user.equals("Rock") && computer.equals("Scissors")) ||
-                (user.equals("Paper") && computer.equals("Rock")) ||
-                (user.equals("Scissors") && computer.equals("Paper"))) {
-
+        // Check user winning conditions
+        if ((userChoice.equals("Rock")
+                && computerChoice.equals("Scissors"))
+                || (userChoice.equals("Paper")
+                && computerChoice.equals("Rock"))
+                || (userChoice.equals("Scissors")
+                && computerChoice.equals("Paper"))) {
             return "User";
         }
 
         return "Computer";
     }
 
-    static double calculatePercentage(int wins, int totalGames) {
+    // Calculate winning statistics
+    public static String[][] calculateStatistics(
+            int userWins,
+            int computerWins,
+            int draws,
+            int totalGames) {
 
-        return ((double) wins / totalGames) * 100;
+        double userPercentage =
+                (userWins * 100.0) / totalGames;
+
+        double computerPercentage =
+                (computerWins * 100.0) / totalGames;
+
+        String[][] statistics = {
+                {"User Wins", String.valueOf(userWins),
+                        String.format("%.2f%%", userPercentage)},
+                {"Computer Wins", String.valueOf(computerWins),
+                        String.format("%.2f%%", computerPercentage)},
+                {"Draws", String.valueOf(draws),
+                        String.format("%.2f%%",
+                                (draws * 100.0) / totalGames)}
+        };
+
+        return statistics;
+    }
+
+    // Display game results and statistics
+    public static void displayResults(
+            String[][] games,
+            String[][] statistics) {
+
+        System.out.printf(
+                "%-8s %-12s %-12s %-12s%n",
+                "Game", "User", "Computer", "Result");
+
+        for (int i = 0; i < games.length; i++) {
+            System.out.printf(
+                    "%-8s %-12s %-12s %-12s%n",
+                    games[i][0],
+                    games[i][1],
+                    games[i][2],
+                    games[i][3]);
+        }
+
+        System.out.println();
+
+        System.out.printf(
+                "%-18s %-10s %-12s%n",
+                "Result", "Wins", "Percentage");
+
+        for (int i = 0; i < statistics.length; i++) {
+            System.out.printf(
+                    "%-18s %-10s %-12s%n",
+                    statistics[i][0],
+                    statistics[i][1],
+                    statistics[i][2]);
+        }
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take number of games
         System.out.print("Enter number of games: ");
-        int games = sc.nextInt();
+        int gamesCount = input.nextInt();
+
+        String[][] games = new String[gamesCount][4];
 
         int userWins = 0;
         int computerWins = 0;
         int draws = 0;
 
-        System.out.println("\nEnter Rock, Paper or Scissors");
+        // Play multiple games
+        for (int i = 0; i < gamesCount; i++) {
 
-        for (int i = 1; i <= games; i++) {
+            System.out.print(
+                    "Enter your choice (Rock/Paper/Scissors): ");
+            String userChoice = input.next();
 
-            System.out.print("Game " + i + ": ");
-            String user = sc.next();
+            // Convert first letter to uppercase and remaining to lowercase
+            userChoice = userChoice.substring(0, 1).toUpperCase()
+                    + userChoice.substring(1).toLowerCase();
 
-            String computer = getComputerChoice();
+            String computerChoice = getComputerChoice();
 
-            String winner = findWinner(user, computer);
+            String winner =
+                    findWinner(userChoice, computerChoice);
 
+            // Store game result
+            games[i][0] = String.valueOf(i + 1);
+            games[i][1] = userChoice;
+            games[i][2] = computerChoice;
+            games[i][3] = winner;
+
+            // Update statistics
             if (winner.equals("User")) {
                 userWins++;
             } else if (winner.equals("Computer")) {
@@ -65,35 +150,19 @@ public class RockPaperScissors {
             } else {
                 draws++;
             }
-
-            System.out.println(
-                    "Computer: " + computer +
-                            " | Winner: " + winner
-            );
         }
 
-        double userPercentage =
-                calculatePercentage(userWins, games);
+        // Calculate statistics
+        String[][] statistics =
+                calculateStatistics(
+                        userWins,
+                        computerWins,
+                        draws,
+                        gamesCount);
 
-        double computerPercentage =
-                calculatePercentage(computerWins, games);
+        // Display results
+        displayResults(games, statistics);
 
-        System.out.println("\n----- Statistics -----");
-
-        System.out.println("User Wins: " + userWins);
-        System.out.println("Computer Wins: " + computerWins);
-        System.out.println("Draws: " + draws);
-
-        System.out.println(
-                "User Winning Percentage: "
-                        + userPercentage + "%"
-        );
-
-        System.out.println(
-                "Computer Winning Percentage: "
-                        + computerPercentage + "%"
-        );
-
-        sc.close();
+        input.close();
     }
 }
