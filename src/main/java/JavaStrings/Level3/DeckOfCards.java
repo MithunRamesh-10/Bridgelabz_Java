@@ -1,34 +1,44 @@
+package javaString.level3;
+
 import java.util.Scanner;
 
+/**
+ * Problem 10 (GCR — Java String Level 3 Assignment)
+ * Create, initialize, shuffle and distribute a deck of cards
+ * to the given number of players.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
 public class DeckOfCards {
 
-    static String[] initializeDeck() {
+    // Define card suits
+    private static final String[] SUITS = {
+            "Hearts",
+            "Diamonds",
+            "Clubs",
+            "Spades"
+    };
 
-        String[] suits = {
-                "Hearts",
-                "Diamonds",
-                "Clubs",
-                "Spades"
-        };
+    // Define card ranks
+    private static final String[] RANKS = {
+            "2", "3", "4", "5", "6", "7", "8", "9",
+            "10", "Jack", "Queen", "King", "Ace"
+    };
 
-        String[] ranks = {
-                "2", "3", "4", "5", "6", "7",
-                "8", "9", "10",
-                "Jack", "Queen", "King", "Ace"
-        };
+    // Initialize the complete deck
+    public static String[] initializeDeck() {
+        int numberOfCards =
+                SUITS.length * RANKS.length;
 
-        int numOfCards = suits.length * ranks.length;
-
-        String[] deck = new String[numOfCards];
+        String[] deck = new String[numberOfCards];
 
         int index = 0;
 
-        for (String suit : suits) {
-
-            for (String rank : ranks) {
-
+        // Create every rank and suit combination
+        for (String suit : SUITS) {
+            for (String rank : RANKS) {
                 deck[index] = rank + " of " + suit;
-
                 index++;
             }
         }
@@ -36,36 +46,35 @@ public class DeckOfCards {
         return deck;
     }
 
-    static String[] shuffleDeck(String[] deck) {
+    // Shuffle the deck using random card swapping
+    public static String[] shuffleDeck(String[] deck) {
 
-        int n = deck.length;
+        // Iterate over the deck
+        for (int i = 0; i < deck.length; i++) {
 
-        for (int i = 0; i < n; i++) {
-
+            // Generate random position from i to end
             int randomCardNumber =
-                    i + (int)
-                            (Math.random() * (n - i));
+                    i + (int) (
+                            Math.random()
+                                    * (deck.length - i)
+                    );
 
-            String temp = deck[i];
-
+            // Swap current card with random card
+            String temporary = deck[i];
             deck[i] = deck[randomCardNumber];
-
-            deck[randomCardNumber] = temp;
+            deck[randomCardNumber] = temporary;
         }
 
         return deck;
     }
 
-    static String[][] distributeCards(
+    // Distribute cards equally among players
+    public static String[][] distributeCards(
             String[] deck, int numberOfPlayers) {
 
+        // Check whether cards can be equally distributed
         if (deck.length % numberOfPlayers != 0) {
-
-            System.out.println(
-                    "Cards cannot be equally distributed."
-            );
-
-            return null;
+            return new String[0][0];
         }
 
         int cardsPerPlayer =
@@ -74,60 +83,77 @@ public class DeckOfCards {
         String[][] players =
                 new String[numberOfPlayers][cardsPerPlayer];
 
-        int index = 0;
+        int cardIndex = 0;
 
-        for (int i = 0; i < numberOfPlayers; i++) {
+        // Distribute cards to every player
+        for (int player = 0;
+             player < numberOfPlayers;
+             player++) {
 
-            for (int j = 0;
-                 j < cardsPerPlayer;
-                 j++) {
+            for (int card = 0;
+                 card < cardsPerPlayer;
+                 card++) {
 
-                players[i][j] = deck[index];
+                players[player][card] =
+                        deck[cardIndex];
 
-                index++;
+                cardIndex++;
             }
         }
 
         return players;
     }
 
-    static void displayPlayers(String[][] players) {
+    // Print players and their cards
+    public static void printPlayers(
+            String[][] players) {
 
         for (int i = 0; i < players.length; i++) {
 
             System.out.println(
-                    "\nPlayer " + (i + 1) + ":"
-            );
+                    "\nPlayer " + (i + 1) + ":");
 
             for (int j = 0;
                  j < players[i].length;
                  j++) {
 
                 System.out.println(
-                        players[i][j]
-                );
+                        players[i][j]);
             }
         }
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take number of players
         System.out.print("Enter number of players: ");
-        int numberOfPlayers = sc.nextInt();
+        int numberOfPlayers = input.nextInt();
 
+        // Initialize deck
         String[] deck = initializeDeck();
 
-        deck = shuffleDeck(deck);
+        // Shuffle deck
+        shuffleDeck(deck);
 
+        // Distribute cards
         String[][] players =
-                distributeCards(deck, numberOfPlayers);
+                distributeCards(
+                        deck,
+                        numberOfPlayers);
 
-        if (players != null) {
-            displayPlayers(players);
+        // Check whether distribution is possible
+        if (players.length == 0) {
+            System.out.println(
+                    "Cards cannot be equally distributed "
+                            + "among " + numberOfPlayers
+                            + " players."
+            );
+        } else {
+            // Display players and their cards
+            printPlayers(players);
         }
 
-        sc.close();
+        input.close();
     }
 }
