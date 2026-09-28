@@ -1,11 +1,22 @@
+package javaString.level1;
+
 import java.util.Scanner;
 
-public class CharactersUsingCharAt {
+/**
+ * Problem 3 (GCR — Java String Level 1 Assignment)
+ * Write a program to return all the characters in a string using
+ * a user-defined method and compare the result with toCharArray().
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class StringCharacters {
 
-    static char[] getCharacters(String text) {
-
+    // Return characters without using toCharArray()
+    public static char[] getCharacters(String text) {
         char[] characters = new char[text.length()];
 
+        // Store each character in the array
         for (int i = 0; i < text.length(); i++) {
             characters[i] = text.charAt(i);
         }
@@ -13,14 +24,18 @@ public class CharactersUsingCharAt {
         return characters;
     }
 
-    static boolean compareArrays(char[] arr1, char[] arr2) {
+    // Compare two character arrays
+    public static boolean compareArrays(
+            char[] first, char[] second) {
 
-        if (arr1.length != arr2.length) {
+        // Check if array lengths are different
+        if (first.length != second.length) {
             return false;
         }
 
-        for (int i = 0; i < arr1.length; i++) {
-            if (arr1[i] != arr2[i]) {
+        // Compare each character
+        for (int i = 0; i < first.length; i++) {
+            if (first[i] != second[i]) {
                 return false;
             }
         }
@@ -29,18 +44,35 @@ public class CharactersUsingCharAt {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take string input
+        System.out.print("Enter a string: ");
+        String text = input.next();
 
-        System.out.print("Enter text: ");
-        String text = sc.next();
+        // Get characters using user-defined method
+        char[] userDefinedCharacters = getCharacters(text);
 
-        char[] userDefined = getCharacters(text);
-        char[] builtIn = text.toCharArray();
+        // Get characters using built-in method
+        char[] builtInCharacters = text.toCharArray();
 
-        System.out.println("Both arrays are same: "
-                + compareArrays(userDefined, builtIn));
+        // Compare both arrays
+        boolean result =
+                compareArrays(userDefinedCharacters, builtInCharacters);
 
-        sc.close();
+        // Display results
+        System.out.print("Characters using user-defined method: ");
+        for (char character : userDefinedCharacters) {
+            System.out.print(character + " ");
+        }
+
+        System.out.print("\nCharacters using toCharArray(): ");
+        for (char character : builtInCharacters) {
+            System.out.print(character + " ");
+        }
+
+        System.out.println("\nBoth results are same: " + result);
+
+        input.close();
     }
 }
