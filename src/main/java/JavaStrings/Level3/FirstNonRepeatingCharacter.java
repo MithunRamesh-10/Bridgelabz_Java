@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Find the first non-repeating character in a string
  * using the charAt() method.
  *
- * Author : Hemang
+ * Author : Mithun
  * Date : 25-09-2026
  */
 public class FirstNonRepeatingCharacter {
