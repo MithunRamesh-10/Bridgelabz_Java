@@ -1,46 +1,55 @@
-package javaProgrammingElement.Level2;
+package javaProgrammingElements.level2;
 
 import java.util.Scanner;
 
-public class TravelDetails {
+/**
+ * Problem 8 (GCR — Java Programming Elements Assignment)
+ * Rewrite the Sample Program 2 with user inputs.
+ *
+ * Author : Mithun
+ * Date : 19-09-2026
+ */
+public class TravelComputation {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter your name: ");
+        // Take the name
+        System.out.print("Enter name: ");
         String name = input.nextLine();
 
+        // Take the city details
         System.out.print("Enter from city: ");
         String fromCity = input.nextLine();
 
         System.out.print("Enter via city: ");
         String viaCity = input.nextLine();
 
-        System.out.print("Enter destination city: ");
+        System.out.print("Enter to city: ");
         String toCity = input.nextLine();
 
-        System.out.print("Enter distance from " + fromCity +
-                " to " + viaCity + " in miles: ");
-        double fromToVia = input.nextDouble();
+        // Take the distances
+        System.out.print("Enter distance from " + fromCity + " to " + viaCity + ": ");
+        double distanceFromToVia = input.nextDouble();
 
-        System.out.print("Enter distance from " + viaCity +
-                " to " + toCity + " in miles: ");
-        double viaToFinalCity = input.nextDouble();
+        System.out.print("Enter distance from " + viaCity + " to " + toCity + ": ");
+        double distanceViaToFinalCity = input.nextDouble();
 
-        System.out.print("Enter time taken in hours: ");
-        double timeTaken = input.nextDouble();
+        // Take the travel times in minutes
+        System.out.print("Enter time from " + fromCity + " to " + viaCity + " in minutes: ");
+        int timeFromToVia = input.nextInt();
 
-        double totalDistance = fromToVia + viaToFinalCity;
-        double averageSpeed = totalDistance / timeTaken;
+        System.out.print("Enter time from " + viaCity + " to " + toCity + " in minutes: ");
+        int timeViaToFinalCity = input.nextInt();
 
-        System.out.println("\n--- Travel Details ---");
-        System.out.println("Name: " + name);
-        System.out.println("From: " + fromCity);
-        System.out.println("Via: " + viaCity);
-        System.out.println("To: " + toCity);
-        System.out.println("Total Distance: " + totalDistance + " miles");
-        System.out.println("Time Taken: " + timeTaken + " hours");
-        System.out.println("Average Speed: " + averageSpeed + " miles/hour");
+        // Calculate total distance and total time
+        double totalDistance = distanceFromToVia + distanceViaToFinalCity;
+        int totalTime = timeFromToVia + timeViaToFinalCity;
+
+        // Display the travel details
+        System.out.println("The Total Distance travelled by " + name +
+                " from " + fromCity + " to " + toCity +
+                " via " + viaCity + " is " + totalDistance +
+                " km and the Total Time taken is " + totalTime + " minutes");
 
         input.close();
     }
