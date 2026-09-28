@@ -1,33 +1,50 @@
-package javaControlFlow.Level2;
+package javaControlFlow.level2;
 
 import java.util.Scanner;
 
+/**
+ * Problem 7 (GCR — Control Flow Level 2 Assignment)
+ * Create a program to find the BMI of a person.
+ * Take weight in kg and height in cm, convert height to meters,
+ * calculate BMI, and display the weight status.
+ *
+ * Author : Mithun
+ * Date : 21-09-2026
+ */
 public class BMICalculator {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
+        // Take weight in kilograms
         System.out.print("Enter weight in kg: ");
         double weight = input.nextDouble();
 
+        // Take height in centimeters
         System.out.print("Enter height in cm: ");
-        double heightCm = input.nextDouble();
+        double heightInCm = input.nextDouble();
 
-        double heightMeter = heightCm / 100;
+        // Convert height from centimeters to meters
+        double heightInMeter = heightInCm / 100;
 
-        double bmi = weight / (heightMeter * heightMeter);
+        // Calculate BMI
+        double bmi = weight / (heightInMeter * heightInMeter);
 
-        System.out.println("BMI: " + bmi);
+        // Determine the BMI status
+        String status;
 
         if (bmi <= 18.4) {
-            System.out.println("Status: Underweight");
+            status = "Underweight";
         } else if (bmi <= 24.9) {
-            System.out.println("Status: Normal");
+            status = "Normal";
         } else if (bmi <= 39.9) {
-            System.out.println("Status: Overweight");
+            status = "Overweight";
         } else {
-            System.out.println("Status: Obese");
+            status = "Obese";
         }
+
+        // Display the result
+        System.out.println("BMI: " + bmi);
+        System.out.println("Status: " + status);
 
         input.close();
     }
