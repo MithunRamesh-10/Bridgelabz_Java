@@ -1,24 +1,33 @@
-package javaProgrammingElement.Level1;
+package javaProgrammingElements.level1;
 
 import java.util.Scanner;
 
-public class TotalPurchasePrice {
+/**
+ * Problem 15 (GCR — Java Programming Elements Assignment)
+ * Take unit price and quantity as input and calculate the total purchase price.
+ *
+ * Author : Mithun
+ * Date : 19-09-2026
+ */
+public class PurchasePrice {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter the price of item 1: ");
-        double item1 = input.nextDouble();
+        // Take the unit price from the user
+        System.out.print("Enter unit price: ");
+        double unitPrice = input.nextDouble();
 
-        System.out.print("Enter the price of item 2: ");
-        double item2 = input.nextDouble();
+        // Take the quantity from the user
+        System.out.print("Enter quantity: ");
+        int quantity = input.nextInt();
 
-        System.out.print("Enter the price of item 3: ");
-        double item3 = input.nextDouble();
+        // Calculate the total purchase price
+        double totalPrice = unitPrice * quantity;
 
-        double totalPrice = item1 + item2 + item3;
-
-        System.out.println("The total purchase price is INR " + totalPrice);
+        // Display the total purchase price
+        System.out.println("The total purchase price is INR " +
+                totalPrice + " if the quantity " + quantity +
+                " and unit price is INR " + unitPrice);
 
         input.close();
     }
