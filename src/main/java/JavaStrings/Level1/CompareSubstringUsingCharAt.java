@@ -1,11 +1,24 @@
+package javaString.level1;
+
 import java.util.Scanner;
 
-public class CompareSubstringUsingCharAt {
+/**
+ * Problem 2 (GCR — Java String Level 1 Assignment)
+ * Write a program to create a substring from a String using charAt()
+ * and compare it with the built-in substring() method.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class CreateSubstring {
 
-    public static String createSubstring(String text, int start, int end) {
+    // Create substring manually using charAt()
+    public static String createSubstring(
+            String text, int start, int end) {
 
         String result = "";
 
+        // Add characters from start index to end index
         for (int i = start; i < end; i++) {
             result = result + text.charAt(i);
         }
@@ -13,15 +26,16 @@ public class CompareSubstringUsingCharAt {
         return result;
     }
 
-    public static boolean compareStrings(String str1, String str2) {
-
-        if (str1.length() != str2.length()) {
+    // Compare two strings using charAt()
+    public static boolean compareStrings(String first, String second) {
+        // Check if lengths are different
+        if (first.length() != second.length()) {
             return false;
         }
 
-        for (int i = 0; i < str1.length(); i++) {
-
-            if (str1.charAt(i) != str2.charAt(i)) {
+        // Compare each character
+        for (int i = 0; i < first.length(); i++) {
+            if (first.charAt(i) != second.charAt(i)) {
                 return false;
             }
         }
@@ -30,35 +44,36 @@ public class CompareSubstringUsingCharAt {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Enter text: ");
-        String text = scanner.next();
+        // Take string and index inputs
+        System.out.print("Enter a string: ");
+        String text = input.next();
 
         System.out.print("Enter start index: ");
-        int start = scanner.nextInt();
+        int start = input.nextInt();
 
         System.out.print("Enter end index: ");
-        int end = scanner.nextInt();
+        int end = input.nextInt();
 
+        // Create substring using charAt()
         String userDefinedSubstring =
                 createSubstring(text, start, end);
 
-        String builtInSubstring =
-                text.substring(start, end);
+        // Create substring using built-in substring()
+        String builtInSubstring = text.substring(start, end);
 
+        // Compare both substrings
         boolean result =
                 compareStrings(userDefinedSubstring, builtInSubstring);
 
-        System.out.println("User-defined substring: "
+        // Display results
+        System.out.println("Substring using charAt(): "
                 + userDefinedSubstring);
-
-        System.out.println("Built-in substring: "
+        System.out.println("Substring using substring(): "
                 + builtInSubstring);
+        System.out.println("Both results are same: " + result);
 
-        System.out.println("Both substrings are same: " + result);
-
-        scanner.close();
+        input.close();
     }
 }
