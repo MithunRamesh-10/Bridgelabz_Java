@@ -1,34 +1,48 @@
+package javaString.level1;
+
 import java.util.Scanner;
 
-public class ConvertToUpperCase {
+/**
+ * Problem 9 (GCR — Java String Level 1 Assignment)
+ * Write a program to convert the complete text to uppercase
+ * and compare the result with the built-in String method.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class UpperCase {
 
-    static String convertToUpperCase(String text) {
-
+    // Convert text to uppercase using charAt() and ASCII values
+    public static String convertToUpperCase(String text) {
         String result = "";
 
+        // Check each character
         for (int i = 0; i < text.length(); i++) {
+            char character = text.charAt(i);
 
-            char ch = text.charAt(i);
-
-            if (ch >= 'a' && ch <= 'z') {
-                ch = (char) (ch - 32);
+            // Convert lowercase character to uppercase
+            if (character >= 'a' && character <= 'z') {
+                character = (char) (character - 32);
             }
 
-            result = result + ch;
+            result = result + character;
         }
 
         return result;
     }
 
-    static boolean compareStrings(String str1, String str2) {
+    // Compare two strings using charAt()
+    public static boolean compareStrings(
+            String first, String second) {
 
-        if (str1.length() != str2.length()) {
+        // Check if lengths are different
+        if (first.length() != second.length()) {
             return false;
         }
 
-        for (int i = 0; i < str1.length(); i++) {
-
-            if (str1.charAt(i) != str2.charAt(i)) {
+        // Compare each character
+        for (int i = 0; i < first.length(); i++) {
+            if (first.charAt(i) != second.charAt(i)) {
                 return false;
             }
         }
@@ -37,21 +51,29 @@ public class ConvertToUpperCase {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take complete text input
         System.out.print("Enter text: ");
-        String text = sc.nextLine();
+        String text = input.nextLine();
 
-        String userDefined = convertToUpperCase(text);
-        String builtIn = text.toUpperCase();
+        // Convert using user-defined method
+        String userDefinedResult = convertToUpperCase(text);
 
-        System.out.println("Using charAt(): " + userDefined);
-        System.out.println("Using toUpperCase(): " + builtIn);
+        // Convert using built-in method
+        String builtInResult = text.toUpperCase();
 
-        System.out.println("Both results are same: "
-                + compareStrings(userDefined, builtIn));
+        // Compare both results
+        boolean result =
+                compareStrings(userDefinedResult, builtInResult);
 
-        sc.close();
+        // Display results
+        System.out.println("Uppercase using charAt(): "
+                + userDefinedResult);
+        System.out.println("Uppercase using built-in method: "
+                + builtInResult);
+        System.out.println("Both results are same: " + result);
+
+        input.close();
     }
 }
