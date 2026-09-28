@@ -1,36 +1,45 @@
-package javaControlFlow.Level1;
+package javaControlFlow.level1;
 
 import java.util.Scanner;
 
-public class NaturalNumberSumFor {
+/**
+ * Problem 13 (GCR — Control Flow Assignment)
+ * Rewrite program 12 using for loop instead of while loop
+ * to find the sum of n natural numbers.
+ *
+ * Author : Mithun
+ * Date : 21-09-2026
+ */
+public class SumNaturalNumbersFor {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter a natural number: ");
+        // Take number from the user
+        System.out.print("Enter number: ");
         int number = input.nextInt();
 
+        // Check whether the number is natural
         if (number > 0) {
+            // Initialize sum
+            int sum = 0;
 
-            int sumUsingFor = 0;
-
+            // Calculate sum using for loop
             for (int i = 1; i <= number; i++) {
-                sumUsingFor += i;
+                sum = sum + i;
             }
 
-            int sumUsingFormula = number * (number + 1) / 2;
+            // Calculate sum using formula
+            int formulaSum = number * (number + 1) / 2;
 
-            System.out.println("Sum using for loop: " + sumUsingFor);
-            System.out.println("Sum using formula: " + sumUsingFormula);
+            // Display both results
+            System.out.println("Sum using for loop: " + sum);
+            System.out.println("Sum using formula: " + formulaSum);
 
-            if (sumUsingFor == sumUsingFormula) {
-                System.out.println("Both results are correct.");
-            } else {
-                System.out.println("Both results are not equal.");
-            }
-
+            // Compare both results
+            System.out.println("Both results are correct: " + (sum == formulaSum));
         } else {
-            System.out.println("The number is not a natural number.");
+            // Display message for non-natural number
+            System.out.println("The number " + number + " is not a natural number");
         }
 
         input.close();
