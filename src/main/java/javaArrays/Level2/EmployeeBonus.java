@@ -1,70 +1,86 @@
-package javaArrays.Level2;
+package javaArrays.level2;
 
 import java.util.Scanner;
 
+/**
+ * Problem 1 (GCR — Java Arrays Level 2 Assignment)
+ * Calculate the bonus of 10 employees based on their years of service.
+ * Employees with more than 5 years get 5% bonus, otherwise they get 2%.
+ * Display the total bonus, old salary, and new salary.
+ *
+ * Author : Mithun
+ * Date : 22-09-2026
+ */
 public class EmployeeBonus {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        double[] salaries = new double[10];
-        int[] yearsOfService = new int[10];
+        // Create arrays to store salary and years of service
+        double[] salary = new double[10];
+        double[] yearsOfService = new double[10];
 
-        double[] bonuses = new double[10];
-        double[] newSalaries = new double[10];
+        // Create arrays to store bonus and new salary
+        double[] bonus = new double[10];
+        double[] newSalary = new double[10];
 
-        double totalBonus = 0.0;
-        double totalOldSalary = 0.0;
-        double totalNewSalary = 0.0;
+        // Initialize total values
+        double totalBonus = 0;
+        double totalOldSalary = 0;
+        double totalNewSalary = 0;
 
-        for (int i = 0; i < 10; i++) {
+        // Take input for 10 employees
+        int index = 0;
 
-            while (true) {
-                System.out.print("Enter salary of employee " + (i + 1) + ": ");
-                double salary = input.nextDouble();
+        while (index < salary.length) {
+            System.out.println("Employee " + (index + 1));
 
-                System.out.print("Enter years of service: ");
-                int years = input.nextInt();
+            // Take salary
+            System.out.print("Enter salary: ");
+            double employeeSalary = input.nextDouble();
 
-                if (salary > 0 && years >= 0) {
-                    salaries[i] = salary;
-                    yearsOfService[i] = years;
-                    break;
-                }
+            // Take years of service
+            System.out.print("Enter years of service: ");
+            double service = input.nextDouble();
 
-                System.out.println("Invalid input. Enter positive salary and valid years of service.");
+            // Validate salary and years of service
+            if (employeeSalary < 0 || service < 0) {
+                System.out.println("Invalid input. Please enter positive values.");
+                continue;
             }
+
+            // Store valid values
+            salary[index] = employeeSalary;
+            yearsOfService[index] = service;
+
+            // Move to the next employee
+            index++;
         }
 
-        for (int i = 0; i < 10; i++) {
+        // Calculate bonus and new salary
+        for (int i = 0; i < salary.length; i++) {
 
+            // Give 5% bonus for more than 5 years of service
             if (yearsOfService[i] > 5) {
-                bonuses[i] = salaries[i] * 0.05;
-            } else {
-                bonuses[i] = salaries[i] * 0.02;
+                bonus[i] = salary[i] * 0.05;
+            }
+            // Give 2% bonus otherwise
+            else {
+                bonus[i] = salary[i] * 0.02;
             }
 
-            newSalaries[i] = salaries[i] + bonuses[i];
+            // Calculate new salary
+            newSalary[i] = salary[i] + bonus[i];
 
-            totalBonus += bonuses[i];
-            totalOldSalary += salaries[i];
-            totalNewSalary += newSalaries[i];
+            // Calculate totals
+            totalBonus += bonus[i];
+            totalOldSalary += salary[i];
+            totalNewSalary += newSalary[i];
         }
 
-        System.out.println("\nEmployee Details:");
-
-        for (int i = 0; i < 10; i++) {
-            System.out.println("Employee " + (i + 1));
-            System.out.println("Old Salary = " + salaries[i]);
-            System.out.println("Years of Service = " + yearsOfService[i]);
-            System.out.println("Bonus = " + bonuses[i]);
-            System.out.println("New Salary = " + newSalaries[i]);
-            System.out.println();
-        }
-
-        System.out.println("Total Old Salary = " + totalOldSalary);
-        System.out.println("Total Bonus = " + totalBonus);
-        System.out.println("Total New Salary = " + totalNewSalary);
+        // Display the total values
+        System.out.println("\nTotal Bonus Payout: " + totalBonus);
+        System.out.println("Total Old Salary: " + totalOldSalary);
+        System.out.println("Total New Salary: " + totalNewSalary);
 
         input.close();
     }
