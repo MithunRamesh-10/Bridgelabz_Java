@@ -1,15 +1,24 @@
+package javaString.level3;
+
 import java.util.Scanner;
 
-public class PalindromeCheck {
+/**
+ * Problem 7 (GCR — Java String Level 3 Assignment)
+ * Check whether a text is a palindrome using three different methods:
+ * iteration, recursion, and character arrays.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class PalindromeChecker {
 
-    // Logic 1: Start and End
-    static boolean checkPalindrome(String text) {
-
+    // Check palindrome using start and end indexes
+    public static boolean checkPalindromeUsingLoop(String text) {
         int start = 0;
         int end = text.length() - 1;
 
+        // Compare characters from both ends
         while (start < end) {
-
             if (text.charAt(start) != text.charAt(end)) {
                 return false;
             }
@@ -21,47 +30,51 @@ public class PalindromeCheck {
         return true;
     }
 
-    // Logic 2: Recursion
-    static boolean checkPalindromeRecursive(
+    // Check palindrome using recursion
+    public static boolean checkPalindromeUsingRecursion(
             String text, int start, int end) {
 
+        // Base case
         if (start >= end) {
             return true;
         }
 
+        // Compare characters
         if (text.charAt(start) != text.charAt(end)) {
             return false;
         }
 
-        return checkPalindromeRecursive(
+        // Recursive call
+        return checkPalindromeUsingRecursion(
                 text, start + 1, end - 1);
     }
 
-    // Logic 3: Character Array
-    static char[] reverse(String text) {
-
+    // Reverse string using charAt()
+    public static char[] reverseUsingCharAt(String text) {
         char[] reverse = new char[text.length()];
 
-        int index = 0;
-
-        for (int i = text.length() - 1; i >= 0; i--) {
-
-            reverse[index] = text.charAt(i);
-            index++;
+        // Store characters in reverse order
+        for (int i = 0; i < text.length(); i++) {
+            reverse[i] =
+                    text.charAt(text.length() - 1 - i);
         }
 
         return reverse;
     }
 
-    static boolean checkUsingArray(String text) {
+    // Check palindrome using character arrays
+    public static boolean checkPalindromeUsingArrays(
+            String text) {
 
+        // Create original character array
         char[] original = text.toCharArray();
 
-        char[] reversed = reverse(text);
+        // Create reversed array
+        char[] reverse = reverseUsingCharAt(text);
 
+        // Compare both arrays
         for (int i = 0; i < original.length; i++) {
-
-            if (original[i] != reversed[i]) {
+            if (original[i] != reverse[i]) {
                 return false;
             }
         }
@@ -70,26 +83,35 @@ public class PalindromeCheck {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take string input
+        System.out.print("Enter a text: ");
+        String text = input.nextLine();
 
-        System.out.print("Enter text: ");
-        String text = sc.next();
+        // Check palindrome using three methods
+        boolean loopResult =
+                checkPalindromeUsingLoop(text);
+
+        boolean recursiveResult =
+                checkPalindromeUsingRecursion(
+                        text, 0, text.length() - 1);
+
+        boolean arrayResult =
+                checkPalindromeUsingArrays(text);
+
+        // Display results
+        System.out.println(
+                "Palindrome using loop: " + loopResult);
 
         System.out.println(
-                "Logic 1: " + checkPalindrome(text)
-        );
+                "Palindrome using recursion: "
+                        + recursiveResult);
 
         System.out.println(
-                "Logic 2: " +
-                        checkPalindromeRecursive(
-                                text, 0, text.length() - 1)
-        );
+                "Palindrome using arrays: "
+                        + arrayResult);
 
-        System.out.println(
-                "Logic 3: " + checkUsingArray(text)
-        );
-
-        sc.close();
+        input.close();
     }
 }
