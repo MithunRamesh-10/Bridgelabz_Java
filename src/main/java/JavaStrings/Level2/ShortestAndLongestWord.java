@@ -1,12 +1,41 @@
+package javaString.level2;
+
 import java.util.Scanner;
 
-public class ShortestAndLongestWord {
+/**
+ * Problem 4 (GCR — Java String Level 2 Assignment)
+ * Split the text into words and find the shortest and
+ * longest strings in the given text.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class ShortestLongestWords {
 
-    static String[] splitWords(String text) {
+    // Find string length without using length()
+    public static int findLength(String text) {
+        int count = 0;
 
+        try {
+            // Count characters until exception occurs
+            while (true) {
+                text.charAt(count);
+                count++;
+            }
+        } catch (StringIndexOutOfBoundsException exception) {
+            // End of string reached
+        }
+
+        return count;
+    }
+
+    // Split text into words using charAt()
+    public static String[] splitUsingCharAt(String text) {
+        int length = findLength(text);
         int wordCount = 1;
 
-        for (int i = 0; i < text.length(); i++) {
+        // Count the number of words
+        for (int i = 0; i < length; i++) {
             if (text.charAt(i) == ' ') {
                 wordCount++;
             }
@@ -14,97 +43,110 @@ public class ShortestAndLongestWord {
 
         String[] words = new String[wordCount];
 
-        int index = 0;
-        String word = "";
+        int start = 0;
+        int wordIndex = 0;
 
-        for (int i = 0; i < text.length(); i++) {
+        // Extract every word
+        for (int i = 0; i <= length; i++) {
+            if (i == length || text.charAt(i) == ' ') {
+                String word = "";
 
-            char ch = text.charAt(i);
+                for (int j = start; j < i; j++) {
+                    word = word + text.charAt(j);
+                }
 
-            if (ch == ' ') {
-                words[index] = word;
-                index++;
-                word = "";
-            } else {
-                word = word + ch;
+                words[wordIndex] = word;
+                wordIndex++;
+                start = i + 1;
             }
         }
-
-        words[index] = word;
 
         return words;
     }
 
-    static int findLength(String text) {
-
-        int count = 0;
-
-        while (true) {
-            try {
-                text.charAt(count);
-                count++;
-            } catch (StringIndexOutOfBoundsException e) {
-                break;
-            }
-        }
-
-        return count;
-    }
-
-    static String[][] getWordLengths(String[] words) {
-
+    // Create word and length 2D array
+    public static String[][] createWordLengthArray(String[] words) {
         String[][] result = new String[words.length][2];
 
         for (int i = 0; i < words.length; i++) {
-
             result[i][0] = words[i];
-            result[i][1] = String.valueOf(findLength(words[i]));
+            result[i][1] =
+                    String.valueOf(findLength(words[i]));
         }
 
         return result;
     }
 
-    static int[] findShortestAndLongest(String[][] words) {
+    // Find shortest and longest word positions
+    public static int[] findShortestLongest(String[][] words) {
+        int shortestIndex = 0;
+        int longestIndex = 0;
 
-        int shortest = 0;
-        int longest = 0;
-
+        // Compare word lengths
         for (int i = 1; i < words.length; i++) {
+            int currentLength =
+                    Integer.parseInt(words[i][1]);
 
-            int currentLength = Integer.parseInt(words[i][1]);
-            int shortestLength = Integer.parseInt(words[shortest][1]);
-            int longestLength = Integer.parseInt(words[longest][1]);
+            int shortestLength =
+                    Integer.parseInt(words[shortestIndex][1]);
+
+            int longestLength =
+                    Integer.parseInt(words[longestIndex][1]);
 
             if (currentLength < shortestLength) {
-                shortest = i;
+                shortestIndex = i;
             }
 
             if (currentLength > longestLength) {
-                longest = i;
+                longestIndex = i;
             }
         }
 
-        return new int[]{shortest, longest};
+        return new int[]{shortestIndex, longestIndex};
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take complete text input
+        System.out.print("Enter text: ");
+        String text = input.nextLine();
 
-        System.out.print("Enter a sentence: ");
-        String text = sc.nextLine();
+        // Split text into words
+        String[] words = splitUsingCharAt(text);
 
-        String[] words = splitWords(text);
-        String[][] wordLengths = getWordLengths(words);
+        // Create word-length array
+        String[][] wordLengthArray =
+                createWordLengthArray(words);
 
-        int[] result = findShortestAndLongest(wordLengths);
+        // Find shortest and longest word
+        int[] result =
+                findShortestLongest(wordLengthArray);
 
-        System.out.println("Shortest word: "
-                + wordLengths[result[0]][0]);
+        // Display results
+        int shortestIndex = result[0];
+        int longestIndex = result[1];
 
-        System.out.println("Longest word: "
-                + wordLengths[result[1]][0]);
+        System.out.println(
+                "Shortest word: "
+                        + wordLengthArray[shortestIndex][0]
+        );
 
-        sc.close();
+        System.out.println(
+                "Shortest length: "
+                        + wordLengthArray[shortestIndex][1]
+        );
+
+        System.out.println(
+                "Longest word: "
+                        + wordLengthArray[longestIndex][0]
+        );
+
+        System.out.println(
+                "Longest length: "
+                        + wordLengthArray[longestIndex][1]
+        );
+
+        input.close();
     }
 }
