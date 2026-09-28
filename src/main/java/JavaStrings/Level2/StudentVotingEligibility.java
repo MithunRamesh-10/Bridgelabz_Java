@@ -1,33 +1,40 @@
+package javaString.level2;
+
 import java.util.Scanner;
 
+/**
+ * Problem 8 (GCR — Java String Level 2 Assignment)
+ * Generate ages of students and check whether each student
+ * can vote based on the age being greater than or equal to 18.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
 public class StudentVotingEligibility {
 
-    static int[] getAges(int numberOfStudents) {
+    // Generate random 2-digit ages for students
+    public static int[] generateAges(int students) {
+        int[] ages = new int[students];
 
-        Scanner sc = new Scanner(System.in);
-
-        int[] ages = new int[numberOfStudents];
-
-        for (int i = 0; i < numberOfStudents; i++) {
-
-            System.out.print("Enter age of student "
-                    + (i + 1) + ": ");
-
-            ages[i] = sc.nextInt();
+        // Generate ages between 10 and 99
+        for (int i = 0; i < students; i++) {
+            ages[i] = (int) (Math.random() * 90) + 10;
         }
 
         return ages;
     }
 
-    static String[][] checkVotingEligibility(int[] ages) {
-
+    // Create age and voting eligibility 2D array
+    public static String[][] checkVotingEligibility(int[] ages) {
         String[][] result = new String[ages.length][2];
 
+        // Check each student's eligibility
         for (int i = 0; i < ages.length; i++) {
-
             result[i][0] = String.valueOf(ages[i]);
 
-            if (ages[i] >= 18) {
+            if (ages[i] < 0) {
+                result[i][1] = "false";
+            } else if (ages[i] >= 18) {
                 result[i][1] = "true";
             } else {
                 result[i][1] = "false";
@@ -37,38 +44,35 @@ public class StudentVotingEligibility {
         return result;
     }
 
-    static void display(String[][] result) {
+    // Display the 2D array in tabular format
+    public static void displayResult(String[][] result) {
 
-        System.out.println("\nAge\tCan Vote");
+        System.out.printf("%-12s %-15s%n",
+                "Age", "Can Vote");
 
         for (int i = 0; i < result.length; i++) {
-
-            System.out.println(
-                    result[i][0] + "\t" + result[i][1]
-            );
+            System.out.printf("%-12s %-15s%n",
+                    result[i][0], result[i][1]);
         }
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take number of students
+        System.out.print("Enter number of students: ");
+        int students = input.nextInt();
 
-        int numberOfStudents = 10;
+        // Generate student ages
+        int[] ages = generateAges(students);
 
-        int[] ages = new int[numberOfStudents];
+        // Check voting eligibility
+        String[][] result =
+                checkVotingEligibility(ages);
 
-        for (int i = 0; i < numberOfStudents; i++) {
+        // Display result
+        displayResult(result);
 
-            System.out.print("Enter age of student "
-                    + (i + 1) + ": ");
-
-            ages[i] = sc.nextInt();
-        }
-
-        String[][] result = checkVotingEligibility(ages);
-
-        display(result);
-
-        sc.close();
+        input.close();
     }
 }
