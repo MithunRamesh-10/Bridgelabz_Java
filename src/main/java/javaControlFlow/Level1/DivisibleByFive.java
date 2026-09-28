@@ -1,18 +1,28 @@
-package javaControlFlow.Level1;
+package javaControlFlow.level1;
 
 import java.util.Scanner;
 
+/**
+ * Problem 1 (GCR — Control Flow Assignment)
+ * Write a program to check if a number is divisible by 5.
+ *
+ * Author : Mithun
+ * Date : 21-09-2026
+ */
 public class DivisibleByFive {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter a number: ");
+        // Take number from the user
+        System.out.print("Enter number: ");
         int number = input.nextInt();
 
-        boolean result = number % 5 == 0;
+        // Check whether the number is divisible by 5
+        boolean isDivisible = number % 5 == 0;
 
-        System.out.println("Is the number " + number + " divisible by 5? " + result);
+        // Display the result
+        System.out.println("Is the number " + number +
+                " divisible by 5? " + isDivisible);
 
         input.close();
     }
