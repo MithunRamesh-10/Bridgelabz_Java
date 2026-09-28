@@ -1,26 +1,43 @@
+package javaString.level3;
+
 import java.util.Scanner;
 
-public class AnagramCheck {
+/**
+ * Problem 8 (GCR — Java String Level 3 Assignment)
+ * Check whether two texts are anagrams using character
+ * frequency comparison.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class AnagramChecker {
 
-    static boolean checkAnagram(
-            String text1, String text2) {
+    // Check whether two texts are anagrams
+    public static boolean checkAnagram(
+            String first, String second) {
 
-        if (text1.length() != text2.length()) {
+        // Check whether lengths are equal
+        if (first.length() != second.length()) {
             return false;
         }
 
-        int[] frequency1 = new int[256];
-        int[] frequency2 = new int[256];
+        // Create frequency arrays
+        int[] firstFrequency = new int[256];
+        int[] secondFrequency = new int[256];
 
-        for (int i = 0; i < text1.length(); i++) {
-
-            frequency1[text1.charAt(i)]++;
-            frequency2[text2.charAt(i)]++;
+        // Find frequency of characters in first text
+        for (int i = 0; i < first.length(); i++) {
+            firstFrequency[first.charAt(i)]++;
         }
 
-        for (int i = 0; i < 256; i++) {
+        // Find frequency of characters in second text
+        for (int i = 0; i < second.length(); i++) {
+            secondFrequency[second.charAt(i)]++;
+        }
 
-            if (frequency1[i] != frequency2[i]) {
+        // Compare frequencies
+        for (int i = 0; i < 256; i++) {
+            if (firstFrequency[i] != secondFrequency[i]) {
                 return false;
             }
         }
@@ -29,19 +46,25 @@ public class AnagramCheck {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
-
+        // Take two text inputs
         System.out.print("Enter first text: ");
-        String text1 = sc.next();
+        String first = input.nextLine();
 
         System.out.print("Enter second text: ");
-        String text2 = sc.next();
+        String second = input.nextLine();
 
-        boolean result = checkAnagram(text1, text2);
+        // Check anagram
+        boolean result = checkAnagram(first, second);
 
-        System.out.println("Are they anagrams? " + result);
+        // Display result
+        if (result) {
+            System.out.println("The texts are anagrams.");
+        } else {
+            System.out.println("The texts are not anagrams.");
+        }
 
-        sc.close();
+        input.close();
     }
 }
