@@ -67,7 +67,7 @@ public class CreateSubstring {
         boolean result =
                 compareStrings(userDefinedSubstring, builtInSubstring);
 
-        // Display results
+        // Display final results
         System.out.println("Substring using charAt(): "
                 + userDefinedSubstring);
         System.out.println("Substring using substring(): "
