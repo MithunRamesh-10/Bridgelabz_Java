@@ -1,63 +1,81 @@
+package javaString.level2;
+
 import java.util.Scanner;
 
+/**
+ * Problem 6 (GCR — Java String Level 2 Assignment)
+ * Find vowels and consonants in a string and display the
+ * character type as Vowel, Consonant, or Not a Letter.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
 public class CharacterType {
 
-    static String checkCharacter(char ch) {
+    // Check whether a character is vowel, consonant, or not a letter
+    public static String checkCharacter(char character) {
 
-        if (ch >= 'A' && ch <= 'Z') {
-            ch = (char) (ch + 32);
+        // Convert uppercase letter to lowercase using ASCII
+        if (character >= 'A' && character <= 'Z') {
+            character = (char) (character + 32);
         }
 
-        if (ch >= 'a' && ch <= 'z') {
+        // Check for vowels
+        if (character == 'a' || character == 'e'
+                || character == 'i' || character == 'o'
+                || character == 'u') {
+            return "Vowel";
+        }
 
-            if (ch == 'a' || ch == 'e' ||
-                    ch == 'i' || ch == 'o' ||
-                    ch == 'u') {
-
-                return "Vowel";
-            }
-
+        // Check for consonants
+        if (character >= 'a' && character <= 'z') {
             return "Consonant";
         }
 
+        // Character is not a letter
         return "Not a Letter";
     }
 
-    static String[][] getCharacterTypes(String text) {
-
+    // Return each character and its type in a 2D array
+    public static String[][] findCharacterTypes(String text) {
         String[][] result = new String[text.length()][2];
 
+        // Store character and its type
         for (int i = 0; i < text.length(); i++) {
+            char character = text.charAt(i);
 
-            result[i][0] = String.valueOf(text.charAt(i));
-            result[i][1] = checkCharacter(text.charAt(i));
+            result[i][0] = String.valueOf(character);
+            result[i][1] = checkCharacter(character);
         }
 
         return result;
     }
 
-    static void display(String[][] result) {
+    // Display the 2D array in tabular format
+    public static void displayCharacterTypes(String[][] result) {
 
-        System.out.println("\nCharacter\tType");
+        System.out.printf("%-12s %-15s%n",
+                "Character", "Type");
 
         for (int i = 0; i < result.length; i++) {
-            System.out.println(
-                    result[i][0] + "\t\t" + result[i][1]
-            );
+            System.out.printf("%-12s %-15s%n",
+                    result[i][0], result[i][1]);
         }
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take string input
+        System.out.print("Enter a string: ");
+        String text = input.nextLine();
 
-        System.out.print("Enter text: ");
-        String text = sc.nextLine();
+        // Find character types
+        String[][] result = findCharacterTypes(text);
 
-        String[][] result = getCharacterTypes(text);
+        // Display result
+        displayCharacterTypes(result);
 
-        display(result);
-
-        sc.close();
+        input.close();
     }
 }
