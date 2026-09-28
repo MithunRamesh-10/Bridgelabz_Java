@@ -1,80 +1,79 @@
+package javaString.level3;
+
 import java.util.Scanner;
 
-public class CharacterFrequencyUsingUnique {
+/**
+ * Problem 4 (GCR — Java String Level 3 Assignment)
+ * Find the frequency of characters in a string using
+ * the charAt() method and display the result.
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class CharacterFrequency {
 
-    static char[] uniqueCharacters(String text) {
-
-        char[] temp = new char[text.length()];
-
-        int count = 0;
-
-        for (int i = 0; i < text.length(); i++) {
-
-            boolean unique = true;
-
-            for (int j = 0; j < i; j++) {
-
-                if (text.charAt(i) == text.charAt(j)) {
-                    unique = false;
-                    break;
-                }
-            }
-
-            if (unique) {
-                temp[count] = text.charAt(i);
-                count++;
-            }
-        }
-
-        char[] result = new char[count];
-
-        for (int i = 0; i < count; i++) {
-            result[i] = temp[i];
-        }
-
-        return result;
-    }
-
-    static String[][] findFrequency(String text) {
-
+    // Find character frequency and return character-frequency pairs
+    public static String[][] findFrequency(String text) {
         int[] frequency = new int[256];
 
+        // Count frequency of every character
         for (int i = 0; i < text.length(); i++) {
             frequency[text.charAt(i)]++;
         }
 
-        char[] unique = uniqueCharacters(text);
+        // Count characters that occur in the text
+        int uniqueCount = 0;
 
-        String[][] result = new String[unique.length][2];
+        for (int i = 0; i < 256; i++) {
+            if (frequency[i] > 0) {
+                uniqueCount++;
+            }
+        }
 
-        for (int i = 0; i < unique.length; i++) {
+        String[][] result = new String[uniqueCount][2];
+        int index = 0;
 
-            result[i][0] = String.valueOf(unique[i]);
-            result[i][1] =
-                    String.valueOf(frequency[unique[i]]);
+        // Store characters and their frequencies
+        for (int i = 0; i < 256; i++) {
+            if (frequency[i] > 0) {
+                result[index][0] = String.valueOf((char) i);
+                result[index][1] = String.valueOf(frequency[i]);
+                index++;
+            }
         }
 
         return result;
     }
 
-    public static void main(String[] args) {
-
-        Scanner sc = new Scanner(System.in);
-
-        System.out.print("Enter text: ");
-        String text = sc.nextLine();
-
-        String[][] result = findFrequency(text);
-
-        System.out.println("\nCharacter\tFrequency");
+    // Display character frequency
+    public static void displayFrequency(String[][] result) {
+        System.out.printf(
+                "%-12s %-10s%n",
+                "Character", "Frequency"
+        );
 
         for (int i = 0; i < result.length; i++) {
-
-            System.out.println(
-                    result[i][0] + "\t\t" + result[i][1]
+            System.out.printf(
+                    "%-12s %-10s%n",
+                    result[i][0],
+                    result[i][1]
             );
         }
+    }
 
-        sc.close();
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        // Take string input
+        System.out.print("Enter a string: ");
+        String text = input.nextLine();
+
+        // Find frequency
+        String[][] result = findFrequency(text);
+
+        // Display result
+        displayFrequency(result);
+
+        input.close();
     }
 }
