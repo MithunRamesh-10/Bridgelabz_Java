@@ -1,50 +1,69 @@
-package javaArrays.Level1;
+package javaArrays.level1;
 
 import java.util.Scanner;
 
-public class OddAndEvenNumbers {
+/**
+ * Problem 7 (GCR — Java Arrays Level 1 Assignment)
+ * Save odd and even numbers between 1 and the given number
+ * into separate odd and even arrays, then display both arrays.
+ *
+ * Author : Mithun
+ * Date : 22-09-2026
+ */
+public class OddEvenArrays {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
+        // Take the number as input
         System.out.print("Enter a natural number: ");
         int number = input.nextInt();
 
-        if (number <= 0) {
-            System.out.println("Invalid input. Please enter a natural number.");
+        // Validate the input
+        if (number < 1) {
+            System.out.println("Invalid Number.");
             input.close();
             return;
         }
 
-        int[] even = new int[number / 2 + 1];
-        int[] odd = new int[number / 2 + 1];
+        // Create arrays for odd and even numbers
+        int arraySize = number / 2 + 1;
+        int[] oddNumbers = new int[arraySize];
+        int[] evenNumbers = new int[arraySize];
 
-        int evenIndex = 0;
+        // Initialize indexes for both arrays
         int oddIndex = 0;
+        int evenIndex = 0;
 
+        // Store odd and even numbers in separate arrays
         for (int i = 1; i <= number; i++) {
 
-            if (i % 2 == 0) {
-                even[evenIndex] = i;
-                evenIndex++;
-            } else {
-                odd[oddIndex] = i;
+            // Store odd number
+            if (i % 2 != 0) {
+                oddNumbers[oddIndex] = i;
                 oddIndex++;
+            }
+            // Store even number
+            else {
+                evenNumbers[evenIndex] = i;
+                evenIndex++;
             }
         }
 
+        // Display odd numbers
         System.out.println("Odd numbers:");
 
         for (int i = 0; i < oddIndex; i++) {
-            System.out.print(odd[i] + " ");
+            System.out.print(oddNumbers[i] + " ");
         }
 
+        // Move to the next line
         System.out.println();
 
+        // Display even numbers
         System.out.println("Even numbers:");
 
         for (int i = 0; i < evenIndex; i++) {
-            System.out.print(even[i] + " ");
+            System.out.print(evenNumbers[i] + " ");
         }
 
         input.close();
