@@ -1,27 +1,44 @@
+package javaString.level2;
+
 import java.util.Scanner;
 
-public class TrimStringUsingCharAt {
+/**
+ * Problem 7 (GCR — Java String Level 2 Assignment)
+ * Trim the leading and trailing spaces from a string
+ * using the charAt() method and compare with trim().
+ *
+ * Author : Mithun
+ * Date : 25-09-2026
+ */
+public class TrimSpaces {
 
-    static int[] findTrimIndexes(String text) {
-
+    // Find starting and ending positions without spaces
+    public static int[] findTrimPositions(String text) {
         int start = 0;
         int end = text.length() - 1;
 
-        while (start <= end && text.charAt(start) == ' ') {
+        // Find first non-space character
+        while (start < text.length()
+                && text.charAt(start) == ' ') {
             start++;
         }
 
-        while (end >= start && text.charAt(end) == ' ') {
+        // Find last non-space character
+        while (end >= 0
+                && text.charAt(end) == ' ') {
             end--;
         }
 
         return new int[]{start, end};
     }
 
-    static String createSubstring(String text, int start, int end) {
+    // Create substring using charAt()
+    public static String createSubstring(
+            String text, int start, int end) {
 
         String result = "";
 
+        // Extract characters from start to end
         for (int i = start; i <= end; i++) {
             result = result + text.charAt(i);
         }
@@ -29,15 +46,18 @@ public class TrimStringUsingCharAt {
         return result;
     }
 
-    static boolean compareStrings(String str1, String str2) {
+    // Compare two strings using charAt()
+    public static boolean compareStrings(
+            String first, String second) {
 
-        if (str1.length() != str2.length()) {
+        // Check string lengths
+        if (first.length() != second.length()) {
             return false;
         }
 
-        for (int i = 0; i < str1.length(); i++) {
-
-            if (str1.charAt(i) != str2.charAt(i)) {
+        // Compare every character
+        for (int i = 0; i < first.length(); i++) {
+            if (first.charAt(i) != second.charAt(i)) {
                 return false;
             }
         }
@@ -46,25 +66,41 @@ public class TrimStringUsingCharAt {
     }
 
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
 
-        Scanner sc = new Scanner(System.in);
+        // Take complete text input
+        System.out.print("Enter text with spaces: ");
+        String text = input.nextLine();
 
-        System.out.print("Enter text: ");
-        String text = sc.nextLine();
+        // Find trim positions
+        int[] positions = findTrimPositions(text);
 
-        int[] indexes = findTrimIndexes(text);
+        String userDefinedResult = "";
 
-        String userDefined =
-                createSubstring(text, indexes[0], indexes[1]);
+        // Create trimmed substring if text contains non-space characters
+        if (positions[0] <= positions[1]) {
+            userDefinedResult = createSubstring(
+                    text, positions[0], positions[1]);
+        }
 
-        String builtIn = text.trim();
+        // Use built-in trim()
+        String builtInResult = text.trim();
 
-        System.out.println("Using charAt(): [" + userDefined + "]");
-        System.out.println("Using trim(): [" + builtIn + "]");
+        // Compare both results
+        boolean result =
+                compareStrings(userDefinedResult, builtInResult);
 
-        System.out.println("Both results are same: "
-                + compareStrings(userDefined, builtIn));
+        // Display results
+        System.out.println(
+                "Trimmed using charAt(): ["
+                        + userDefinedResult + "]");
 
-        sc.close();
+        System.out.println(
+                "Trimmed using trim(): ["
+                        + builtInResult + "]");
+
+        System.out.println("Both results are same: " + result);
+
+        input.close();
     }
 }
