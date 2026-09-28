@@ -1,28 +1,31 @@
-package javaProgrammingElement.Level1;
+package javaProgrammingElements.level1;
 
 import java.util.Scanner;
 
+/**
+ * Problem 12 (GCR — Java Programming Elements Assignment)
+ * Calculate the area of a triangle using base and height.
+ *
+ * Author : Mithun
+ * Date : 19-09-2026
+ */
 public class TriangleArea {
     public static void main(String[] args) {
-
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Enter base in centimeters: ");
-        double baseCm = input.nextDouble();
+        // Take the base from the user
+        System.out.print("Enter base: ");
+        double base = input.nextDouble();
 
-        System.out.print("Enter height in centimeters: ");
-        double heightCm = input.nextDouble();
+        // Take the height from the user
+        System.out.print("Enter height: ");
+        double height = input.nextDouble();
 
-        double areaCm = 0.5 * baseCm * heightCm;
+        // Calculate the area of the triangle
+        double area = 0.5 * base * height;
 
-        double baseInches = baseCm / 2.54;
-        double heightInches = heightCm / 2.54;
-
-        double areaInches = 0.5 * baseInches * heightInches;
-
-        System.out.println("The area of triangle is " + areaCm +
-                " square centimeters and " + areaInches +
-                " square inches");
+        // Display the area
+        System.out.println("The area of the triangle is " + area);
 
         input.close();
     }
