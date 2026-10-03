@@ -1,4 +1,4 @@
-package JavaConstructors;
+package JavaConstructors.Level1;
 
 import java.util.Scanner;
 
