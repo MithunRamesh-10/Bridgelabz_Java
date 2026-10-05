@@ -1,204 +1,198 @@
-# Bridgelabz_Java
+Bridgelabz_Java
+Java assignments and practice problems completed as part of the BridgeLabz training program. Assignments are taken from Google Classroom (GCR).
 
-Java assignments and practice problems completed as part of the BridgeLabz training program.
+Repository Structure
+main : this README with daily task updates
+develop : empty Bridgelabz_Java project skeleton
+feature/*: week-wise topic branches containing the solutions
+Daily Task Update
+Day 14 — 03 Oct 2026
+What I have done
 
----
+Completed and pushed Encapsulation, Abstraction, Polymorphism, Interface and Abstract Class assignments
+Practiced encapsulation, abstract classes, interfaces, method overloading and method overriding
+What I will do
 
-## Daily Task Updates
+Continue with upcoming Java OOP assignments
+Practice the concepts covered in the assignments
+Issues faced
 
-### Day 01 - 19 Sep 2026
+Faced some difficulty understanding the differences between abstract classes and interfaces
+Faced some difficulty understanding runtime polymorphism and method overriding
+Day 13 — 02 Oct 2026
+What I have done
 
-**What I Have Done**
-- Started working on the BridgeLabz Java Programming assignments.
-- Completed Java Programming Elements Level 1 problems.
-- Practiced basic Java syntax, variables, data types, arithmetic operations, and user input using Scanner.
+Completed and pushed Java Inheritance assignment
+Practiced single, multilevel, hierarchical and hybrid inheritance using interfaces
+What I will do
 
-**What I Will Do**
-- Continue with the remaining Java Programming Elements problems.
-- Move towards more advanced programming concepts.
+Learn and practice encapsulation and abstraction
+Work on upcoming OOP assignments
+Issues faced
 
-**Issues Faced**
-- Initially faced some difficulty with Java syntax and handling user input while solving the problems.
+Faced some difficulty understanding different types of inheritance
+Faced some difficulty understanding hybrid inheritance using interfaces
+Day 12 — 01 Oct 2026
+What I have done
 
----
+Completed and pushed Java Object Modeling coding and diagram assignments
+Practiced class, object, sequence diagrams and association, aggregation and composition relationships
+What I will do
 
-### Day 02 - 20 Sep 2026
+Learn and practice Java Inheritance
+Work on upcoming OOP assignments
+Issues faced
 
-**What I Have Done**
-- Completed Java Programming Elements Level 2 problems.
-- Worked on arithmetic operations, type conversion, methods, and different types of user input.
+Faced some difficulty understanding association, aggregation and composition
+Faced some difficulty creating and aligning UML diagrams
+Day 11 — 30 Sep 2026
+What I have done
 
-**What I Will Do**
-- Start working on Java Control Flow problems.
-- Practice decision-making and looping concepts.
+Completed Java this, static, final and instanceof practice problems
+Practiced using this for instance variables and constructor parameters
+Practiced static variables and methods
+Practiced final variables and type checking using instanceof
+What I will do
 
-**Issues Faced**
-- Initially faced some difficulty with type conversion and understanding the logic for a few mathematical problems.
+Revise Java OOP concepts learned so far
+Practice questions based on this, static, final and instanceof
+Issues faced
 
----
+Faced some difficulty understanding the difference between instance and static members
+Faced some difficulty understanding how final and instanceof work in different situations
+Day 10 — 29 Sep 2026
+What I have done
 
-### Day 03 - 21 Sep 2026
+Completed Java Constructors practice problems
+Practiced default, parameterized and copy constructors
+Practiced constructor overloading and constructor chaining
+Practiced instance vs class variables and methods
+Practiced access modifiers and inheritance
+What I will do
 
-**What I Have Done**
-- Started working on Java Control Flow Level 1 problems.
-- Practiced conditional statements, nested conditions, loops, and number-based problems.
-- Completed programs such as Divisible By Five, Employee Bonus, Factorial, and other Control Flow Level 1 problems.
+Learn and practice this, static, final and instanceof
+Revise constructors and access modifiers
+Issues faced
 
-**What I Will Do**
-- Continue completing Java Control Flow problems.
-- Start working on Java Arrays.
+Faced some difficulty understanding constructor chaining
+Faced some difficulty understanding the difference between instance and class variables
+Day 09 — 28 Sep 2026
+What I have done
 
-**Issues Faced**
-- Initially faced some difficulty in deciding which conditional statement or loop to use for different problems.
+Completed Java String Extras practice problems
+Completed Java Class and Object Level 1 and Level 2 assignments
+Practiced string manipulation and additional string-based problems
+Practiced creating classes and objects, fields, constructors and methods
+What I will do
 
----
+Learn Java Constructors concepts
+Practice constructor overloading, constructor chaining and access modifiers
+Issues faced
 
-### Day 04 - 22 Sep 2026
+Faced some difficulty understanding how classes and objects work together
+Faced some difficulty understanding object creation and constructor usage
+Day 08 — 26 Sep 2026
+What I have done
 
-**What I Have Done**
-- Continued working on Java Control Flow.
-- Started working on Java Arrays.
-- Practiced creating and initializing arrays, traversing arrays, accessing array elements, and performing operations on array elements.
-- Started solving Java Arrays Level 1 practice problems.
+Completed the remaining Java Strings Level 2 assignment
+Completed Java Strings Level 3 assignment
+Practiced string manipulation, character frequency, palindrome, anagram, calendar and deck of cards problems
+What I will do
 
-**What I Will Do**
-- Continue completing Java Arrays Level 1 problems.
-- Practice different array operations.
+Revise Java concepts learned so far
+Practice coding problems based on Java fundamentals, arrays, methods and strings
+Issues faced
 
-**Issues Faced**
-- Initially had some difficulty understanding array indexing and handling two-dimensional arrays.
+Faced some difficulty understanding character frequency and nested loop based string problems
+Day 07 — 25 Sep 2026
+What I have done
 
----
+Learned Java Strings concepts
+Completed Java Strings Level 1 assignment
+Completed some questions from Java Strings Level 2
+Practiced string comparison, substring, character handling, exceptions, string length, word splitting and character classification
+What I will do
 
-### Day 05 - 23 Sep 2026
+Complete the remaining Java Strings Level 2 questions
+Practice Java Strings Level 3 problems
+Issues faced
 
-**What I Have Done**
-- Completed Java Arrays Level 1 and Level 2 practice problems.
-- Worked on array traversal, searching elements, frequency of elements, duplicate elements, mathematical operations on arrays, two-dimensional arrays, and array manipulation.
-- Started working on Java Methods.
-- Understood the basic concepts of defining and calling methods.
+Faced some difficulty understanding string manipulation and handling characters using charAt()
+Day 06 — 24 Sep 2026
+What I have done
 
-**What I Will Do**
-- Continue working on Java Methods Level 1 problems.
-- Practice passing parameters to methods and returning values from methods.
+Completed Java Methods Level 3 assignment
+Practiced methods with arrays, number properties, recursion, OTP generation, calendar, mathematical calculations, employee bonus, student scorecard and matrix operations
+What I will do
 
-**Issues Faced**
-- Initially got a little confused about when to use methods and how to pass values to them while solving the problems.
+Learn Java Strings concepts
+Practice string-based problems and manipulation
+Issues faced
 
----
+Faced some difficulty handling multiple methods together and implementing matrix operations using methods
+Day 05 — 23 Sep 2026
+What I have done
 
-### Day 06 - 24 Sep 2026
+Learned Java Methods concepts
+Completed Java Methods Level 1 and Level 2 assignments
+Practiced creating methods, passing parameters, returning values and using static methods
+Practiced recursion, unit conversion, number checking, arrays and mathematical calculations
+What I will do
 
-**What I Have Done**
-- Started working on Java Methods Level 1 problems.
-- Completed programs including:
-  - Simple Interest Calculation
-  - Maximum Number of Handshakes
-  - Triangular Park - Number of Rounds
-  - Positive, Negative or Zero
-  - Spring Season
-  - Sum of N Natural Numbers
-  - Smallest and Largest of Three Numbers
-  - Quotient and Remainder
-  - Chocolate Distribution Among Children
-  - Wind Chill Temperature
-  - Trigonometric Functions using Math Class
-- Practiced creating methods, passing parameters, returning values, and taking user input using Scanner.
+Complete Java Methods Level 3 assignment
+Practice methods with arrays and mathematical problems
+Issues faced
 
-**What I Will Do**
-- Continue working on the remaining Java Methods problems.
-- Practice more method-based problems to improve Java programming and problem-solving skills.
+Faced some difficulty understanding when to use static and non-static methods
+Faced some difficulty handling multiple methods and returning arrays from methods
+Day 04 — 22 Sep 2026
+What I have done
 
-**Issues Faced**
-- Initially faced some difficulty in understanding how to pass parameters and return values from methods while solving different problems.
+Learned Java Arrays concepts
+Completed Java Arrays Level 1 and Level 2 assignments
+Practiced 1D arrays, 2D arrays, array traversal, searching, digit frequency and other array-based problems
+What I will do
 
----
+Practice array-based problem solving
+Improve my understanding of 1D and 2D arrays
+Issues faced
 
-### Day 07 - 25 Sep 2026
+Faced some difficulty working with 2D arrays and handling array size and input correctly
+Day 03 — 21 Sep 2026
+What I have done
 
-**What I Have Done**
-- Completed Java Methods Level 2 and Level 3 practice problems.
-- Worked on method-based problems involving:
-  - BMI Calculation
-  - Factors of a Number
-  - Friends' Age and Height
-  - Leap Year Checking
-  - Number Analysis
-  - Quadratic Equations
-  - Random Number Analysis
-  - Student Voting Eligibility
-  - Recursion
-  - Unit Converters
-- Completed Java Methods Level 3 problems including:
-  - Football Player Height
-  - Number Checker
-  - Number Digit Analysis
-  - Number Reverse and Palindrome
-  - Special Number Checker
-  - Number Classification
-  - Unique OTP Generator
-  - Calendar Display
-  - Euclidean Distance and Line
-  - Collinear Points
-  - Employee Bonus
-  - Student Marks
-  - Matrix Operations
-- Practiced passing parameters, returning values, using multiple methods together, recursion, arrays, mathematical calculations, and problem-solving using Java methods.
+Learned Java Control Flow concepts
+Completed Control Flow Level 1, Level 2 and Level 3 assignments
+Practiced if-else, switch, for loop, while loop, break and logical operators
+What I will do
 
-**What I Will Do**
-- Start working on Java Strings.
-- Practice string manipulation, character operations, String methods, and exception handling.
+Practice writing programs using different control flow statements
+Improve problem-solving using conditions and loops
+Issues faced
 
-**Issues Faced**
-- Initially faced some difficulty in breaking complex problems into smaller methods and handling multiple methods, parameters, return values, and mathematical calculations together.
+Faced some difficulty understanding the flow of nested conditions and choosing the correct loop for different problems
+Day 02 — 19 Sep 2026
+What I have done
 
----
+Learned basic Java programming concepts
+Completed Java Programming Elements Level 1 and Level 2 assignments
+Practiced variables, data types, user input, arithmetic operations and basic calculations
+What I will do
 
-### Day 08 - 26 Sep 2026
+Practice the Java concepts learned through the assignments
+Improve my understanding of Java syntax and problem solving
+Issues faced
 
-**What I Have Done**
-- Completed Java Strings Level 1, Level 2, and Level 3 practice problems.
-- Practiced String manipulation using:
-  - `charAt()`
-  - `substring()`
-  - `equals()`
-  - `toCharArray()`
-  - `trim()`
-  - `toUpperCase()`
-  - `toLowerCase()`
-- Practiced exception handling with:
-  - `NullPointerException`
-  - `StringIndexOutOfBoundsException`
-  - `IllegalArgumentException`
-  - `NumberFormatException`
-  - `ArrayIndexOutOfBoundsException`
-- Completed Level 2 problems involving:
-  - Finding string length without using `length()`
-  - Splitting text into words without using `split()`
-  - Finding word lengths
-  - Finding shortest and longest words
-  - Finding vowels and consonants
-  - Character classification
-  - Trimming spaces using `charAt()`
-  - Student voting eligibility
-  - Rock-Paper-Scissors
-  - Student scorecards
-- Completed Level 3 problems including:
-  - BMI Calculation
-  - Unique Characters
-  - First Non-Repeating Character
-  - Character Frequency
-  - Palindrome Checking
-  - Anagram Checking
-  - Calendar Generation
-  - Deck of Cards
-- Practiced nested loops, frequency arrays, ASCII character operations, recursion, two-pointer logic, two-dimensional arrays, and `Math.random()`.
+Faced some difficulty understanding type conversion and applying the correct data types in calculations
+Day 01 — 18 Sep 2026
+What I have done
 
-**What I Will Do**
-- Continue practicing Java Strings.
-- Strengthen my understanding of String methods, arrays, exception handling, and problem-solving techniques.
+Set up the repository with main, develop and feature branches
+Completed the Java programming assignment (feature/coreProgramming > javaProgrammingElements)
+What I will do
 
-**Issues Faced**
-- Initially faced some difficulty in handling String indexing, character manipulation, nested loops, frequency counting, and exception handling while solving different String problems.
+Learn more Java concepts
+Work on the upcoming assignments
+Issues faced
 
----
+None
