@@ -10,6 +10,31 @@ Java assignments and practice problems completed as part of the BridgeLabz train
 
 # Daily Task Updates
 
+### Day 15 — 08 Oct 2026
+
+**What I have done**
+
+- Completed and pushed Java Linked List assignments
+- Practiced singly linked lists, doubly linked lists and circular linked lists
+- Implemented student record management, movie management, task scheduling, inventory management and library management systems using linked lists
+- Practiced round robin scheduling, social media friend connections, undo/redo text editor and online ticket reservation using linked list concepts
+
+**What I will do**
+
+- Revise linked list concepts and operations
+- Learn and practice upcoming Java Data Structures assignments
+- Improve problem-solving using different data structures
+
+**Issues faced**
+
+- Faced some difficulty understanding the differences between singly, doubly and circular linked lists
+- Faced some difficulty handling node insertion and deletion at different positions
+- Faced some difficulty maintaining links between nodes in doubly and circular linked lists
+
+---
+
+
+
 ## Day 14 — 03 Oct 2026
 
 ### What I have done
